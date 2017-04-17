@@ -40,6 +40,7 @@ function createTag(evt) {
     var name = this.getElementsByTagName("SPAN")[0].innerHTML;//获取导航名作为标签页名
     var title = document.createTextNode(name);
     var textNode = document.createElement("SPAN");
+    textNode.className = "tag-name";
     textNode.appendChild(title);
     var buttonNode = createButton(this);//创建关闭标签页按钮节点
     buttonNode.addEventListener("click", closePage, false);
@@ -68,7 +69,7 @@ function createButton(thisElement) {
     var text = document.createTextNode("×");
     var element = document.createElement("BUTTON");
     element.appendChild(text);
-    element.className = "close";
+    element.className = "self-close close";
     return element;
 }
 
@@ -84,6 +85,7 @@ function createIframe(url) {
     iframe.name = "ifm" + url + count;
     iframe.style.width = "100%";
     iframe.style.height = "950px";
+    iframe.style.border = "0px";
     iframeArea.appendChild(iframe);
     return iframe;
 }
