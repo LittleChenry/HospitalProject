@@ -161,9 +161,6 @@
                             </div>
                         </li>
                         <li>
-                            <a class="parent"><i class="fa fa-user fa-fw"></i> <span>管理员</span></a>
-                        </li>
-                        <li>
                             <a href="Root-information.aspx"><i class="fa fa-edit fa-fw"></i> <span>消息发布</span></a>
                         </li>
                         <li>
@@ -230,14 +227,14 @@
             <!-- /.navbar-static-side -->
         </nav>
     <div id="page-wrapper" style="padding:0px;">
-            <div id="targets">
+            <div id="targets" class="tags">
                 <div class="targets choosed">
-                    <span>主页</span>
+                    <span class="tag-name">主页</span>
                     <input type="hidden" value="Root-Welcome.aspx 0" />        
                 </div>
             </div>
         	<div id="iframeArea" class="panel-group">
-                <iframe name="urlRoot-Welcome.aspx0" src="Root-Welcome.aspx" style="width:100%;height:950px;"></iframe>
+                <iframe name="urlRoot-Welcome.aspx0" src="Root-Welcome.aspx" style="width: 100%; height: 950px; border: 0px;"></iframe>
             </div>
     </div>
     <!-- jQuery -->
