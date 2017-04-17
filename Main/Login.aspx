@@ -17,8 +17,6 @@
     <script type="text/javascript" src="../Scripts/LoginJS.js"></script>
 </head>
 <body>
-    <!-- 添加注释，测试git -->
-    <!-- 添加注释，测试git，jy11 -->
     <form id="frmLogin" runat="server" method="post" action="Login2.aspx">
         <div style="margin:auto;text-align:center;">
             <img src="../images/logo.gif" />
@@ -57,11 +55,11 @@
                     </div>
                     <div id="chooseRole" class="login-panel panel panel-default" style="margin-top:210px;display:none;">
                         <div class="panel-heading">
-                            <h1 class="login-title">请选择登录角色</h1>
+                            <h3 class="panel-title">请选择登陆角色</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <select id="userRole" class="login-select form-control"></select>
+                            <div class="form-group" style="margin-left:40%;">
+                                <select id="userRole"></select>
                             </div>
                             <br />
                             <input id="login2" type="button" value="登陆" class="btn btn-lg btn-success btn-block"/>

@@ -161,16 +161,19 @@
                             </div>
                         </li>
                         <li>
+                            <a class="parent"><i class="fa fa-user fa-fw"></i> <span>管理员</span></a>
+                        </li>
+                        <li>
                             <a href="Root-information.aspx"><i class="fa fa-edit fa-fw"></i> <span>消息发布</span></a>
                         </li>
                         <li>
                             <a href="#" class="parent"><i class="fa fa-group fa-fw"></i> <span>用户管理</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse">
                                 <li>
-                                    <a href="Login.html"><span>用户信息</span></a>
+                                    <a href="Root-userInformation.aspx"><span>用户信息</span></a>
                                 </li>
                                 <li>
-                                    <a href="morris.html"><span>角色绑定</span></a>
+                                    <a href="Root-user2role.aspx"><span>角色绑定</span></a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -227,14 +230,14 @@
             <!-- /.navbar-static-side -->
         </nav>
     <div id="page-wrapper" style="padding:0px;">
-            <div id="targets" class="tags">
+            <div id="targets">
                 <div class="targets choosed">
-                    <span class="tag-name">主页</span>
-                    <input type="hidden" value="Root-Welcome.aspx 0" />
+                    <span>主页</span>
+                    <input type="hidden" value="Root-Welcome.aspx 0" />        
                 </div>
             </div>
         	<div id="iframeArea" class="panel-group">
-                <iframe name="urlRoot-Welcome.aspx0" src="Root-Welcome.aspx" style="width: 100%; height: 950px; border: 0px;"></iframe>
+                <iframe name="urlRoot-Welcome.aspx0" src="Root-Welcome.aspx" style="width:100%;height:950px;"></iframe>
             </div>
     </div>
     <!-- jQuery -->

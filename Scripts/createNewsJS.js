@@ -1,4 +1,13 @@
-﻿window.addEventListener("load", Init, false);
+﻿/* ***********************************************************
+ * FileName: chooseAllJS.js
+ * Writer: peach
+ * create Date: 2017-4-10
+ * ReWriter:
+ * Rewrite Date:
+ * impact :
+ * 生成消息具体内容
+ * **********************************************************/
+window.addEventListener("load", Init, false);
 var obj;
 var contentArea;
 function Init() {

@@ -86,7 +86,14 @@ public class DataLayer
     /// <param name="objValue">参数实际对象值</param>
     public void AddParameterWithValue(string strParamName, object objValue)
     {
-        _sqlCommand.Parameters.AddWithValue(strParamName, objValue);
+        if (GetParameter(strParamName) != null)//这个参数存在时
+        {
+            changeParameterValue(GetParameter(strParamName), objValue);
+        }
+        else
+        {
+            _sqlCommand.Parameters.AddWithValue(strParamName, objValue);
+        }
     }
     #endregion
 
@@ -136,7 +143,12 @@ public class DataLayer
     /// <returns></returns>
     public MySqlParameter GetParameter(string strParamName)
     {
-        return _sqlCommand.Parameters[strParamName];
+        try{
+            return _sqlCommand.Parameters[strParamName];
+        }
+        catch(Exception ex){
+            return null;
+        }
     }
     #endregion
 

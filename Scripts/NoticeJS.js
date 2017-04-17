@@ -1,4 +1,13 @@
-﻿window.addEventListener("load", createNotice, false)
+﻿/* ***********************************************************
+ * FileName: NoticeJS
+ * Writer: peach
+ * create Date: 2017-4-11
+ * ReWriter:
+ * Rewrite Date:
+ * impact :
+ * 通知栏生成标题
+ * **********************************************************/
+window.addEventListener("load", createNotice, false)
 
 var titleArea;
 var obj;
