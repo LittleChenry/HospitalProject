@@ -1,0 +1,20 @@
+﻿input.invalid {
+    border: 2px inset red;
+    background-color: #FF0;
+}
+.text {
+    width:100%;
+    font-size:larger;
+}
+.important {
+    float:left;
+    margin-right:2%;
+}
+.hidePart {
+    display:none;
+    margin-left:28px;
+}
+.noticeBody {
+    margin-top:3%;
+    margin-bottom:5%;
+}

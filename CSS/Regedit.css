@@ -1,0 +1,64 @@
+﻿table {
+    margin:0 auto;
+    width:532pt;
+    text-align:center;
+    table-layout:fixed;
+    border:2px #079eb3 outset;
+    padding-top:60px;
+    padding-bottom:60px;
+    background-color:aliceblue;
+    border-radius:5px 6px 7px 8px;
+}
+label.invalid {
+    font-weight:700;
+    color:#F00;
+}
+label.warning {
+    color:red;
+}
+input.invalid {
+    border: 2px inset red;
+    background-color: #FF0;
+}
+
+input.checkbox {
+    width:20pt;
+}
+
+input.sexRadio{
+    width:20pt;
+}
+
+select {
+    font-size:medium;
+    width:150pt;
+    font-family:"lucida Grande",Verdana,"Microsoft YaHei";
+}
+
+select.invalid {
+    border: 2px inset red;
+    background-color: #FF0;
+}
+
+td.right {
+    text-align:right;
+}
+body {
+    font-size: 24px;
+}
+td.left {
+    text-align:left;
+}
+
+span {
+    float: left;
+    margin-left: 25px;
+    margin-right: 10px;
+    margin-top: 8px;
+}
+
+input.toRight {
+    float:right;
+    width:75%;
+}
+

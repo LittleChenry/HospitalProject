@@ -1,0 +1,22 @@
+﻿hr {
+    margin-top:5px;
+    margin-bottom:5px;
+}
+li {
+    width:100%;
+}
+span.time {
+    float:right;
+}
+h1.title {
+    margin-left:2%;
+}
+
+div.notice {
+    width:50%;
+    margin-left:25.3333%;
+    margin-right:33.3333%
+}
+h3 {
+    margin-left:5%;
+}
