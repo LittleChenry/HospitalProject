@@ -17,6 +17,7 @@
     <script type="text/javascript" src="../Scripts/LoginJS.js"></script>
 </head>
 <body>
+    <!-- 添加注释，测试git -->
     <form id="frmLogin" runat="server" method="post" action="Login2.aspx">
         <div style="margin:auto;text-align:center;">
             <img src="../images/logo.gif" />
