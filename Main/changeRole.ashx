@@ -18,7 +18,7 @@ public class changeRole : IHttpHandler, IRequiresSessionState{
             return false;
         }
     }
-    //返回角色
+    //返回角色。
     private string GetRoles(HttpContext context)
     {
         if (context.Session["loginUser"] == null)
