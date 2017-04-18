@@ -29,7 +29,7 @@ public class Notice : IHttpHandler {
     private string findNews(HttpContext context)
     {
         string id = context.Request.QueryString["ID"];
-        string sqlCommand = "SELECT Title,Content,Releasetime,user.Name RName FROM news,user WHERE news.ID=@id AND user.ID=news.Release_User_ID";
+        string sqlCommand = "SELECT Title,Content,Releasetime,Hot,New,user.Name RName FROM news,user WHERE news.ID=@id AND user.ID=news.Release_User_ID";
         sqlOperation.AddParameterWithValue("@id", id);
         MySql.Data.MySqlClient.MySqlDataReader reader = sqlOperation.ExecuteReader(sqlCommand);
         if (reader.Read())
@@ -45,10 +45,14 @@ public class Notice : IHttpHandler {
             backText.Append(day);
             backText.Append("\",\"RName\":\"");
             backText.Append(reader["RName"].ToString());
+            backText.Append("\",\"Hot\":\"");
+            backText.Append(reader["Hot"].ToString());
+            backText.Append("\",\"New\":\"");
+            backText.Append(reader["New"].ToString());
             backText.Append("\"}");
             return backText.ToString();
         }
-        return "{\"Titlt\":\"false\"}";
+        return "{\"Title\":\"false\"}";
     }
 
 }

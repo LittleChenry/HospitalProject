@@ -164,6 +164,9 @@
                             <a href="Root-information.aspx"><i class="fa fa-edit fa-fw"></i> <span>消息发布</span></a>
                         </li>
                         <li>
+                            <a href="Root-InfoManage.aspx"><i class="fa fa-edit fa-fw"></i> <span>消息管理</span></a>
+                        </li>
+                        <li>
                             <a href="#" class="parent"><i class="fa fa-group fa-fw"></i> <span>用户管理</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse">
                                 <li>
