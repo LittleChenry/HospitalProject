@@ -25,6 +25,11 @@ public partial class Root_Root_InfoManage : System.Web.UI.Page
              case 30: removeHot(id); break;
              default: break;
          }
+         if (Session["loginUser"] == null)
+         {
+             MessageBox.Message("请先登陆");
+             Response.Write("<script language=javascript>window.location.replace('../Main/Login.aspx');</script>");
+         }
     }
     public void delete(String  id)
     {

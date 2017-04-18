@@ -12,7 +12,11 @@ public partial class Main_Notice : System.Web.UI.Page
     private DataLayer sqlOperation = new DataLayer("sqlStr");//数据库操作类
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["loginUser"] == null)
+        {
+            MessageBox.Message("请先登陆");
+            Response.Write("<script language=javascript>window.location.replace('../Main/Login.aspx');</script>");
+        }
         string id=Request.QueryString["ID"];
         string sqlCommand = "SELECT Title,Content,Releasetime,user.Name RName FROM news,user WHERE news.ID=@id AND user.ID=news.Release_User_ID";
         sqlOperation.AddParameterWithValue("@id", id);
@@ -24,18 +28,7 @@ public partial class Main_Notice : System.Web.UI.Page
             string day = date.Year.ToString() + "-" + date.Month.ToString() + "-" + date.Day.ToString();
             this.Label3.Text = reader["Title"].ToString();
             this.Label2.Text = "发布时间:" + day + "&nbsp;&nbsp;&nbsp;&nbsp" + "发布者：" + reader["RName"];
-            this.Label1.Text = reader["Content"].ToString();
-            
-              
-            
+            this.Label1.Text = reader["Content"].ToString();              
         }
-
-       
-
-
-
-
-
-
     }
 }
