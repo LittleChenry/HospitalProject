@@ -46,7 +46,7 @@
         </asp:ObjectDataSource>
         <div>
             <div class="col-lg-12">
-        		<h1 class="page-header">消息发布</h1>
+        		<h1 class="page-header">用户信息</h1>
         	</div>
             <div class="col-lg-12 search">
                 <div class="col-lg-4">

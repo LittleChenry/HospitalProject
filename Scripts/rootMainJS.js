@@ -7,9 +7,23 @@
  * impact :load事件增加了getUserName函数用来读取登录用户名写到右上角用户状态上在aspx里对应的<i>标签加了一个id
  * 实现内嵌标签页
  * **********************************************************/
+window.onresize = function () {
+    //alert("pagechanged!");
+    var tabs = document.getElementsByClassName("targets");
+    chooseLeftAndRight(tabs);
+    
+}
 window.addEventListener("load", Init, false);
 var addTagArea;
 var count;
+
+function CreateMoveButton() {
+    var moveLeft = document.getElementById("move-left");
+    moveLeft.addEventListener("click", LeftMoved, false);
+    var moveRight = document.getElementById("move-right");
+    moveRight.addEventListener("click", RightMoved, false);
+}
+
 function Init() {
     addTagArea = document.getElementById("targets");
     var menu = document.getElementById("menu");
@@ -55,6 +69,8 @@ function createTag(evt) {
     transferPage(thisUrl, iframe);
     tagNode.className = "targets choosed";
     addTagArea.appendChild(tagNode);
+    var tabs = document.getElementsByClassName("targets");
+    chooseLeftAndRight(tabs);
     addClickEvent();
     if (evt && evt.preventDefault)
         //因此它支持W3C的stopPropagation()方法
@@ -64,6 +80,199 @@ function createTag(evt) {
         window.event.cancelBubble = true;
     return false;
 }
+
+function chooseLeftAndRight(tabs) {
+    oldTabs = findLeftRightChoosed(tabs);
+    removeLeftAndRight(tabs);
+    var totalLength = 0;
+    var tempLength;
+    var pageWidth = document.body.clientWidth;
+    var tabsMax = pageWidth - 290;
+    var leftIndex = oldTabs[0];
+    var rightIndex = oldTabs[1];
+    var choosedIndex = oldTabs[2];
+    var flag = 0;
+    //alert(leftIndex + "" + choosedIndex + "" + rightIndex);
+    for (var i = leftIndex; i < tabs.length; i++) {
+        if (flag == 1) {
+            break;
+        }
+        totalLength += tabs[i].offsetWidth;
+        if (totalLength > tabsMax) {
+            if (i - 1 < choosedIndex) {
+                rightIndex = choosedIndex;
+                tempLength = 0;
+                for (var j = choosedIndex; j > 0; j--) {
+                    tempLength += tabs[j].offsetWidth;
+                    if (tempLength > tabsMax) {
+                        leftIndex = j + 1;
+                        flag = 1;
+                        break;
+                    } else {
+                        leftIndex = j;
+                    }
+                }
+                flag = 1;
+                break;
+            } else {
+                rightIndex = i - 1;
+                tempLength = 0;
+                for (var j = rightIndex; j > 0; j--) {
+                    tempLength += tabs[j].offsetWidth;
+                    if (tempLength > tabsMax) {
+                        leftIndex = j + 1;
+                        flag = 1;
+                        break;
+                    } else {
+                        leftIndex = j;
+                    }
+                }
+            }
+        } else {
+            rightIndex = choosedIndex;
+        }
+    }
+    tabs[leftIndex].className += " left";
+    tabs[rightIndex].className += " right";
+    adjustLeftAndRight(leftIndex, rightIndex, tabs);
+}
+
+function adjustLeftAndRight(left, right,tabs) {
+    for (var i = 0; i < tabs.length; i++) {
+        if (i < left) {
+            tabs[i].style.display = "none";
+        } else {
+            if (i > right) {
+                tabs[i].style.display = "none";
+            } else {
+                if (tabs[i].style.display == "none") {
+                    tabs[i].style.display = "";
+                }
+            }
+        }
+    }
+}
+
+function LeftMoved() {
+    var totalLength = 0;
+    var leftIndex = 0;
+    var rightIndex;
+    var pageWidth = document.body.clientWidth;
+    var tabsMax = pageWidth - 290;
+    var tabs = document.getElementsByClassName("targets");
+    for (var i = 0; i < tabs.length; i++) {
+        if (isClass("left", tabs[i])) {
+            if (i > 0) {
+                removeClass("left", tabs[i]);
+                tabs[i - 1].className += " left";
+                tabs[i - 1].style.display = "";
+                leftIndex = i - 1;
+            } else {
+                alert("前面没有标签页了!"); 
+                break;
+            }
+        }
+    }
+    for (var i = leftIndex; i < tabs.length; i++) {
+        totalLength += tabs[i].offsetWidth;
+        if (totalLength > tabsMax) {
+            rightIndex = i - 1;
+            removeClass("right", tabs[findLeftRightChoosed(tabs)[1]]);
+            tabs[rightIndex].className += " right";
+            adjustLeftAndRight(leftIndex, rightIndex, tabs);
+            break;
+        }
+    }
+}
+
+function RightMoved() {
+    var tabs = document.getElementsByClassName("targets");
+    var totalLength = 0;
+    var leftIndex;
+    var rightIndex = tabs.length-1;
+    var pageWidth = document.body.clientWidth;
+    var tabsMax = pageWidth - 290;
+    for (var i = tabs.length - 1; i > 0; i--) {
+        if (isClass("right", tabs[i])) {
+            if (i < tabs.length - 1) {
+                removeClass("right", tabs[i]);
+                tabs[i + 1].className += " right";
+                tabs[i + 1].style.display = "";
+                rightIndex = i + 1;
+            } else {
+                alert("后面没有标签页了!");
+                break;
+            }
+        }
+    }
+    for (var i = rightIndex; i > 0; i--) {
+        totalLength += tabs[i].offsetWidth;
+        //alert(totalLength + " " + tabsMax);
+        if (totalLength > tabsMax) {
+            leftIndex = i + 1;
+            removeClass("left", tabs[findLeftRightChoosed(tabs)[0]]);
+            tabs[leftIndex].className += " left";
+            //alert(leftIndex + " " + rightIndex);
+            adjustLeftAndRight(leftIndex, rightIndex, tabs);
+            break;
+        }
+    }
+}
+
+
+function findLeftRightChoosed(tabs) {
+    var LR = [0, tabs.length - 1, 0];
+    for (var i = 0; i < tabs.length; i++) {
+        if (isClass("left", tabs[i])) {
+            LR[0] = i;
+        }
+        if (isClass("right", tabs[i])) {
+            LR[1] = i;
+        }
+        if (isClass("choosed", tabs[i])) {
+            LR[2] = i;
+        }
+    }
+    return LR;
+
+}
+
+function removeLeftAndRight(tabs) {
+    var leftTab = getByClass(tabs, "left");
+    removeClass("left", leftTab[0]);
+    var rightTab = getByClass(tabs, "right");
+    removeClass("right", rightTab[0]);
+}
+
+function isClass(sClass,element){
+    var k = 0;
+    var arr = element.className.split(" ");
+    for (var j = 0; j < arr.length; j++) {
+        /*判断拆分后的数组中有没有满足的class*/
+        if (arr[j] == sClass) {
+            k = 1;
+        }
+    }
+    if(k==0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function getByClass(tabs,sClass) {
+    var aResult = [];
+    for (var i = 0; i < tabs.length; i++) {
+        var arr = tabs[i].className.split(" ");
+        for (var j = 0; j < arr.length; j++) {
+            /*判断拆分后的数组中有没有满足的class*/
+            if (arr[j] == sClass) {
+                aResult.push(tabs[i]);
+            }
+        }
+    }
+    return aResult;
+};
 
 function createButton(thisElement) {
     var text = document.createTextNode("×");
@@ -100,7 +309,7 @@ function transferPage(thisUrl, iframe) {
     var allTags = addTagArea.getElementsByTagName("DIV");
     for (var i = 0; i < allTags.length; i++) {
         if (allTags[i].className.indexOf("choosed") > -1) {
-            removeChoosed(allTags[i]);
+            removeClass("choosed",allTags[i]);
         }
     }
 }
@@ -112,12 +321,14 @@ function hideAllIframe() {
     }
 }
 //移除className choosed
-function removeChoosed(thisElement) {
+function removeClass(rClass,thisElement) {
     var classNames = thisElement.className.split(" ");
-    var rClassName = "";
-    for (var i = 0; i < classNames.length; i++) {
-        if (classNames[i] != "choosed") {
-            rClassName += classNames[i];
+    var rClassName = classNames[0];
+    for (var i = 1; i < classNames.length; i++) {
+        if (classNames[i] != rClass) {
+            var temp = "";
+            temp = " "+classNames[i];
+            rClassName += temp;
         }
     }
     thisElement.className = rClassName;
@@ -132,7 +343,7 @@ function changePage() {
     var allTags = addTagArea.getElementsByTagName("DIV");
     for (var i = 0; i < allTags.length; i++) {
         if (allTags[i].className.indexOf("choosed") > -1) {
-            removeChoosed(allTags[i]);
+            removeClass("choosed", allTags[i]);
         }
     }
     this.className += " choosed";
@@ -188,6 +399,7 @@ function closePage(e) {
     showPreviousPage(preNode);//显示选中标签内容
     clearIframe(tag);//清除对应iframe
     addTagArea.removeChild(tag);
+    //alert(document.getElementsByClassName("targets").length);
     if (e && e.stopPropagation)
         //因此它支持W3C的stopPropagation()方法
         e.stopPropagation();

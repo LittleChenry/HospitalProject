@@ -16,6 +16,7 @@ div.choosed{
 }
 .tags {
 	height: 20px;
+    margin-left: 30px;
 }
 .tag-name {
     padding-right:10px;

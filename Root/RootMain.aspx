@@ -146,7 +146,7 @@
 
             <div id="menu" class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse collapse">
-                    <ul class="nav in" id="side-menu" style="margin-top:0px;">
+                    <ul class="frame-list nav in" id="side-menu" style="margin-top:0px;">
                     	<li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <div class="user-panel">
@@ -168,7 +168,7 @@
                         </li>
                         <li>
                             <a href="#" class="parent"><i class="fa fa-group fa-fw"></i> <span>用户管理</span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
+                            <ul class="second-ul nav nav-second-level collapse">
                                 <li>
                                     <a href="Root-userInformation.aspx"><span>用户信息</span></a>
                                 </li>
@@ -181,12 +181,12 @@
                         <li>
                             <a href="#" class="parent"><i class="fa fa-group fa-fw"></i> <span>角色管理</span><span class="fa arrow"></span>
                             </a>
-                            <ul class="nav nav-second-level collapse">
+                            <ul class="second-ul nav nav-second-level collapse">
                             	<li>
-                            		<a href="#"><span>角色信息</span></a>
+                            		<a href="#"><span> 角色信息</span></a>
                             	</li>
                             	<li>
-                            		<a href="#"><span>功能绑定</span></a>
+                            		<a href="#"><span> 功能绑定</span></a>
                             	</li>
                             </ul>
                         </li>
@@ -195,27 +195,27 @@
                         </li>
                         <li>
                             <a href="#" class="parent"><i class="fa fa-sitemap fa-fw"></i> <span>设备管理</span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
+                            <ul class="second-ul nav nav-second-level collapse">
                                 <li>
-                                    <a href="#">Second Level Item</a>
+                                    <a href="#"> Second Level Item</a>
                                 </li>
                                 <li>
-                                    <a href="#">Second Level Item</a>
+                                    <a href="#"> Second Level Item</a>
                                 </li>
                                 <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
+                                    <a href="#"> Third Level <span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level collapse">
                                         <li>
-                                            <a href="#">Third Level Item</a>
+                                            <a href="#"> Third Level Item</a>
                                         </li>
                                         <li>
-                                            <a href="#">Third Level Item</a>
+                                            <a href="#"> Third Level Item</a>
                                         </li>
                                         <li>
-                                            <a href="#">Third Level Item</a>
+                                            <a href="#"> Third Level Item</a>
                                         </li>
                                         <li>
-                                            <a href="#">Third Level Item</a>
+                                            <a href="#"> Third Level Item</a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
@@ -231,13 +231,19 @@
         </nav>
     <div id="page-wrapper" style="padding:0px;">
             <div id="targets" class="tags">
-                <div class="targets choosed">
+                <a id="move-left" href="javascript:;">
+                    <p class="glyphicon glyphicon-backward"></p>
+                </a>
+                <div class="targets choosed right left" style="margin-left: 0px;">
                     <span class="tag-name">主页</span>
                     <input type="hidden" value="Root-Welcome.aspx 0" />        
                 </div>
+                <a id="move-right" href="javascript:;">
+                    <p class="glyphicon glyphicon-forward"></p>
+                </a>
             </div>
-        	<div id="iframeArea" class="panel-group">
-                <iframe name="urlRoot-Welcome.aspx0" src="Root-Welcome.aspx" style="width: 100%; height: 950px; border: 0px;"></iframe>
+        	<div id="iframeArea" class="self-frame panel-group">
+                <iframe name="urlRoot-Welcome.aspx0" src="Root-Welcome.aspx" style="width: 100%; height: 750px; border: 0px;"></iframe>
             </div>
     </div>
     <!-- jQuery -->
@@ -252,5 +258,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
     <script src="../Scripts/rootMainJS.js"></script>
+    <script src="../Scripts/jqOperate.js"></script>
 </body>
 </html>
