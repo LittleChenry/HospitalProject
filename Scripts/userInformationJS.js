@@ -8,18 +8,18 @@ function Init() {
     if (phone != null) {
         phone.addEventListener("blur", phoneFormat, false);
     }
-    document.getElementById("showAdd").addEventListener("mousedown", showAdd, false);
+    document.getElementById("showAdd").addEventListener("mousedown", showAdd, false);       //新增用户按钮事件
     createRole();
-    document.getElementById("addNewFrm").addEventListener("submit", checkAll, false);
-    document.getElementById("phoneContact").addEventListener("blur", checkPhone, false);
-    document.getElementById("userNumber").addEventListener("blur", checkNumber, false);
-    document.getElementById("userPassword").addEventListener("blur", checkUserkey, false);
-    document.getElementById("checkPassword").addEventListener("blur", checkRePswRight, false);
-    document.getElementById("addNewFrm").addEventListener("reset", resetForm, false);
+    document.getElementById("addNewFrm").addEventListener("submit", checkAll, false);       //新增用户表单的提交事件
+    document.getElementById("phoneContact").addEventListener("blur", checkPhone, false);    //电话号码输入框的blur事件
+    document.getElementById("userNumber").addEventListener("blur", checkNumber, false);     //账号输入框的blur事件
+    document.getElementById("userPassword").addEventListener("blur", checkUserkey, false);  //第一次密码输入框
+    document.getElementById("checkPassword").addEventListener("blur", checkRePswRight, false);//第二次密码输入框
+    document.getElementById("addNewFrm").addEventListener("reset", resetForm, false);       //表单重置
 }
 
 
-//电话号码格式规范
+//GridView电话号码格式规范
 function phoneFormat() {
     var thisPhone = this.value;
     var rep = /^(\d{3})\-?(\d{4})\-?(\d{4})$/;
@@ -31,7 +31,7 @@ function phoneFormat() {
         this.className += "invalid";
     }
 }
-
+//点击新增用户按钮显示注册区域，同时改变按钮样式
 function showAdd(evt) {
     var addArea = document.getElementById("addNewUser");
     var style = (addArea.currentStyle != undefined) ? addArea.currentStyle.display : window.getComputedStyle(addArea, null).display;
@@ -43,7 +43,7 @@ function showAdd(evt) {
         addArea.style.display = "none";
     }
 }
-
+//新增用户区域生成选择角色的多选框
 function createRole() {
     var roleArea = document.getElementById("hidePart");
     getAllRole();
@@ -68,7 +68,7 @@ function createRole() {
         createDropDowmList(role[i],roleArea);
     }
 }
-
+//ajax请求后端返回存在的所有角色
 function getAllRole() {
     var xmlHttp = new XMLHttpRequest();
     var url = "getAllRole.ashx";
@@ -81,7 +81,7 @@ function getAllRole() {
     }
     xmlHttp.send();
 }
-
+//生成角色选择多选框的函数
 function createDropDowmList(role,roleArea){
     var roleNameString = document.createTextNode(role.Description);
     var span = document.createElement("SPAN");
@@ -98,7 +98,7 @@ function createDropDowmList(role,roleArea){
     li.appendChild(label);
     roleArea.appendChild(li);
 }
-
+//新增用户表单提交时的验证
 function checkAll(evt) {
     isAllGood = true;
     document.getElementById("error").innerHTML = "";
@@ -114,7 +114,7 @@ function checkAll(evt) {
         recordRole();
     }
 }
-
+//新增用户表单元素的一些错误提示
 function checkElement(element) {
     var classNames = element.className.split(" ");
     var rclassName = "";
@@ -158,7 +158,7 @@ function checkElement(element) {
     }
     return true;
 }
-
+//检查class
 function checkClassName(thisClassName,thisElement) {
     var backString = "";
     switch (thisClassName) {
@@ -206,25 +206,25 @@ function checkClassName(thisClassName,thisElement) {
         }
     return backString;
 }
-
+//检查是否为空的函数
 function checkEmpty(thisElement){
     if(thisElement.value == ""){
         return false;
     }
     return true;
 }
-
+//检查密码是否6-12位的函数
 function checkKey(thisElement){
     var psw = thisElement.value;
     var rep = /^\w{6,12}$/;
     return rep.test(psw);
 }
-
+//检查两次密码是否相同的函数
 function checkPassword(thisElement){
     var psw = document.getElementById("userPassword").value;
     return (thisElement.value == psw);
 }
-
+//检查是否选择角色的函数
 function checkRole(thisElement) {
     var roles = document.getElementsByName("role");
     var isCheck = false;
@@ -235,13 +235,13 @@ function checkRole(thisElement) {
     }
     return isCheck;
 }
-
+//检查手机号码的函数
 function checkContact(thisElement) {
     var thisPhone = thisElement.value;
     var rep = /^(\d{3})\-?(\d{4})\-?(\d{4})$/;
     return rep.test(thisPhone);
 }
-
+//检查手机号码格式
 function checkPhone() {
     var error = document.getElementById("error");
     error.innerHTML = "";
@@ -255,7 +255,7 @@ function checkPhone() {
         this.className += " invalid";
     }
 }
-
+//记录所选角色，形式:"ROOT WLS YS "
 function recordRole() {
     var hidden = document.getElementById("selectedRole");
     var roles = document.getElementsByName("role");
@@ -267,7 +267,7 @@ function recordRole() {
     }
     hidden.value = seleced;
 }
-
+//重置class
 function recoverClassName(thisElement) {
     var thisClassNames = thisElement.className.split(" ");
     var backString = "";
@@ -278,7 +278,7 @@ function recoverClassName(thisElement) {
     }
     thisElement.className = backString;
 }
-
+//检测输入的账号在数据库中是否存在
 function checkNumber() {
     var error = document.getElementById("error");
     error.innerHTML = "";
@@ -303,7 +303,7 @@ function checkNumber() {
     }
     xmlHttp.send();
 }
-
+//检查密码是否6-12位
 function checkUserkey() {
     var error = document.getElementById("error");
     error.innerHTML = "";
@@ -313,7 +313,7 @@ function checkUserkey() {
         this.className += " invalid";
     }
 }
-
+//检查两次密码是否重复
 function checkRePswRight() {
     var error = document.getElementById("error");
     error.innerHTML = "";
@@ -323,7 +323,7 @@ function checkRePswRight() {
         this.className += " invalid";
     }
 }
-
+//重置新增用户的表单
 function resetForm(evt) {
     //所有提示清空
     document.getElementById("error").innerHTML = "";

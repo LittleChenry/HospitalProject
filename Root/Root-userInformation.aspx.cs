@@ -98,7 +98,12 @@ public partial class Root_Root_userInformation : System.Web.UI.Page
             return false;
     }
     #endregion
-
+    #region 根据绑定的性别，显示相应中文
+    /// <summary>
+    /// 根据绑定的性别，显示相应中文
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
     public string GetGender(object str)
     {
         string gender = str.ToString();
@@ -109,7 +114,13 @@ public partial class Root_Root_userInformation : System.Web.UI.Page
         else
             return "女";
     }
-
+    #endregion
+    #region 根据绑定的激活状态，显示相应中文
+    /// <summary>
+    /// 根据绑定的激活状态，显示相应中文
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
     public string GetActive(object str)
     {
         int active = int.Parse(str.ToString());
@@ -120,7 +131,13 @@ public partial class Root_Root_userInformation : System.Web.UI.Page
         else
             return "未激活";
     }
-
+    #endregion
+    #region 根据激活状态，显示按钮文本
+    /// <summary>
+    /// 根据激活状态，显示按钮文本
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
     public string GetButtonText(object str)
     {
         int active = int.Parse(str.ToString());
@@ -131,7 +148,13 @@ public partial class Root_Root_userInformation : System.Web.UI.Page
         else
             return "激活";
     }
-
+    #endregion
+    #region 数据源更新传参
+    /// <summary>
+    /// 数据源更新传参
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void userDataSource_Updating(object sender, ObjectDataSourceMethodEventArgs e)
     {
         int index = User.EditIndex;
@@ -145,6 +168,13 @@ public partial class Root_Root_userInformation : System.Web.UI.Page
         string office = (row.FindControl("office") as DropDownList).SelectedValue;
         e.InputParameters["office"] = office;
     }
+    #endregion
+    #region 改变激活状态，同时修改按钮文本
+    /// <summary>
+    /// 改变激活状态，同时修改按钮文本
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void Activate_Click(object sender, EventArgs e)
     {
         int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
@@ -167,6 +197,13 @@ public partial class Root_Root_userInformation : System.Web.UI.Page
             (sender as LinkButton).Text = "反激活";
         }
     }
+    #endregion
+    #region 数据源删除操作传参
+    /// <summary>
+    /// 数据源删除操作传参
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void userDataSource_Deleting(object sender, ObjectDataSourceMethodEventArgs e)
     {
         int rowIndex = deleteRow;
@@ -174,9 +211,17 @@ public partial class Root_Root_userInformation : System.Web.UI.Page
         string number = (row.FindControl("userNumber") as Label).Text;
         e.InputParameters["Number"] = number;
     }
+    #endregion
+    #region 找到要删除的行
+    /// <summary>
+    /// 找到要删除的行
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void DeleteLinkButton_Click(object sender, EventArgs e)
     {
         int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
         deleteRow = rowIndex;
     }
+    #endregion
 }

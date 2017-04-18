@@ -17,7 +17,10 @@ public class getAllRole : IHttpHandler {
             return false;
         }
     }
-
+    /// <summary>
+    /// 读取数据库，返回存在的所有角色，生成json
+    /// </summary>
+    /// <returns></returns>
     private string GetRole()
     {
         string sqlCommand = "SELECT DISTINCT Name,Description FROM role";

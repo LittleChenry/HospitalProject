@@ -4,18 +4,19 @@ var obj;
 var backString;
 
 function Init() {
-    getAllRole();
+    getAllRole();   //获取所有存在的角色
     var select = document.getElementsByTagName("A");
+    //给GridView上的选择用户的按钮添加事件
     for (var i = 0; i < select.length; i++) {
         if (select[i].innerHTML == "选择") {
             select[i].addEventListener("click", selectedUser, false);
         }
     }
-    createRole();
-    document.getElementById("chooseAll").addEventListener("click", chooseAll, false);
-    document.getElementById("bindFrm").addEventListener("submit", recordRole, false);
+    createRole();   //生成修改角色的多选框
+    document.getElementById("chooseAll").addEventListener("click", chooseAll, false);       //全选按钮添加点击事件
+    document.getElementById("bindFrm").addEventListener("submit", recordRole, false);       //修改角色的表单添加提交事件
 }
-
+//记录角色，保存在hidden里，方便后端查询。保存形式： "ROOT WLS YS "。
 function recordRole() {
     var hidden = document.getElementById("updateRoles");
     var area1 = document.getElementById("roles1").getElementsByTagName("INPUT");
@@ -33,7 +34,7 @@ function recordRole() {
     }
     hidden.value = selected;
 }
-
+//选择需要修改角色的用户
 function selectedUser(evt) {
     var Number = this.parentNode.childNodes[3].value;
     document.getElementById("userNumber").value = Number;
@@ -46,7 +47,7 @@ function selectedUser(evt) {
     }
     chooseRole(Number);
 }
-
+//多选框中将用户已经拥有的角色选中。
 function chooseRole(Number) {
     GetchooseRoles(Number);
     var area1 = document.getElementById("roles1").getElementsByTagName("INPUT");
@@ -66,7 +67,7 @@ function chooseRole(Number) {
         }
     }
 }
-
+//多选框全选
 function chooseAll() {
     var area1 = document.getElementById("roles1").getElementsByTagName("INPUT");
     var area2 = document.getElementById("roles2").getElementsByTagName("INPUT");
@@ -77,7 +78,7 @@ function chooseAll() {
         area2[i].checked = true;
     }   
 }
-
+//ajax请求后端返回此用户已经拥有的角色
 function GetchooseRoles(Number) {
     var xmlHttp = new XMLHttpRequest();
     var url = "GetChooseRoles.ashx?Number=" + Number;
@@ -89,7 +90,7 @@ function GetchooseRoles(Number) {
     }
     xmlHttp.send();
 }
-
+//ajax请求后端返回数据库中存在的所有角色
 function getAllRole() {
     var xmlHttp = new XMLHttpRequest();
     var url = "getAllRole.ashx";
@@ -102,7 +103,7 @@ function getAllRole() {
     }
     xmlHttp.send();
 }
-
+//生成左右两组多选框，修改角色使用。
 function createRole() {
     var addArea1 = document.getElementById("roles1");
     var addArea2 = document.getElementById("roles2");
@@ -121,7 +122,7 @@ function createRole() {
         }
     }
 }
-
+//生成多选框的函数
 function createCheckBox(role, area) {
     var text = document.createTextNode(role.Description);
     var span = document.createElement("SPAN");

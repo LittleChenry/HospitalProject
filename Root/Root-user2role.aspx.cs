@@ -24,7 +24,9 @@ public partial class Root_Root_user2role : System.Web.UI.Page
             Response.Write("<script language=javascript>window.location.replace('../Main/Login.aspx');</script>");
         }
     }
-
+    /// <summary>
+    /// 向数据库记录修改的角色。
+    /// </summary>
     private void recordNewRole()
     {
         string newRoles = Request.Form["updateRoles"];
@@ -48,7 +50,11 @@ public partial class Root_Root_user2role : System.Web.UI.Page
             }
         }
     }
-
+    /// <summary>
+    /// 根据绑定激活状态(1,0)，显示(已激活，未激活)
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
     public string GetActivate(object str)
     {
         int activate = int.Parse(str.ToString());
@@ -61,7 +67,11 @@ public partial class Root_Root_user2role : System.Web.UI.Page
             return "未激活";
         }
     }
-
+    /// <summary>
+    /// 根据绑定的已拥有角色，显示相应中文。
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
     public string GetRoles(object str)
     {
         string id = str.ToString();

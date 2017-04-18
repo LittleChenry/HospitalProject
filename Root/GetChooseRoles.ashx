@@ -16,7 +16,11 @@ public class GetChooseRoles : IHttpHandler {
             return false;
         }
     }
-
+    /// <summary>
+    /// 读取数据库，返回用户已经拥有的角色。生成json。
+    /// </summary>
+    /// <param name="context"></param>
+    /// <returns></returns>
     private string getRoles(HttpContext context)
     {
         string sqlCommand = "SELECT role.Name FROM user,user2role,role WHERE user.Number=@number AND user.ID=user2role.User_ID AND user2role.Role_ID=role.ID";
