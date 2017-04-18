@@ -18,6 +18,11 @@ public partial class Root_Root_user2role : System.Web.UI.Page
             user2roleGridView.PageIndex = index;
             MessageBox.Message("更改成功");
         }
+        if (Session["loginUser"] == null)
+        {
+            MessageBox.Message("请先登陆");
+            Response.Write("<script language=javascript>window.location.replace('../Main/Login.aspx');</script>");
+        }
     }
 
     private void recordNewRole()
