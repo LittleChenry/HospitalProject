@@ -8,7 +8,6 @@
     <title>请登录</title>
     <!-- Main CSS -->
     <link href="../css/main.css" rel="stylesheet" />
-
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet" />
@@ -55,11 +54,11 @@
                     </div>
                     <div id="chooseRole" class="login-panel panel panel-default" style="margin-top:210px;display:none;">
                         <div class="panel-heading">
-                            <h3 class="panel-title">请选择登陆角色</h3>
+                            <h1 class="login-title">请选择登录角色</h1>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group" style="margin-left:40%;">
-                                <select id="userRole"></select>
+                            <div class="form-group">
+                                <select id="userRole" class="login-select form-control"></select>
                             </div>
                             <br />
                             <input id="login2" type="button" value="登陆" class="btn btn-lg btn-success btn-block"/>

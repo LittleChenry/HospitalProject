@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Root-information.aspx.cs" Inherits="Root_Root_information" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Root-information.aspx.cs"  Inherits="Root_Root_information" validateRequest="false"  %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,6 +23,18 @@
     <link href="../vendor/morrisjs/morris.css" rel="stylesheet" />
     
     <link href="../CSS/Root-information.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../editor/themes/default/default.css" />
+		<script charset="utf-8" src="../editor/examples/jquery.js"></script>
+		<script charset="utf-8" src="../editor/kindeditor-min.js"></script>
+		<script charset="utf-8" src="../editor/lang/zh_CN.js"></script>
+    <script>
+        $(function () {
+            var editor = KindEditor.create('textarea[name="mainText"]',{
+                uploadJson : '../editor/asp.net/upload_json.ashx',
+                fileManagerJson : '../editor/asp.net/file_manager_json.ashx',
+                allowFileManager : true
+            })});
+		</script>
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../Scripts/chooseSee.js"></script>

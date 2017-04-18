@@ -27,7 +27,7 @@
                     </div>
                     <div class="panel-body">
                     <div class="form-group dropDownList">
-                        <select id="userRole"></select>
+                        <select id="userRole" class="form-control"></select>
                     </div>
                     <br />
                     <input id="login" type="button" value="切换" class="btn btn-lg btn-success btn-block"/>

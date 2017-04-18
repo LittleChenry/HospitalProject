@@ -38,11 +38,21 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <!--<div class="col-lg-6">-->
                         <ul id="information" >
                             
                         </ul>
-                    </div>
+
+                    <!--</div>-->
+                </div>
+                <div class="row">
+                    <span style="float:right">
+                     <button class="btn btn-primary btn-xs firstpage" id="firstPage">首页</button>
+                    <button class="btn btn-primary btn-xs firstpage" id="nextPage">下一页</button>
+                    <button class="btn btn-primary btn-xs firstpage" id="previousPage">上一页</button>
+                    <button class="btn btn-primary btn-xs firstpage" id="lastPage">尾页</button>
+                        <input type="hidden" id="currentPage" />
+                    </span>
                 </div>
             </div>
         </div>
