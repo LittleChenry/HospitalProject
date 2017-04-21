@@ -42,12 +42,12 @@ function nextPageShow(evt) {
     pageCurrent = parseInt(document.getElementById("currentPage").value)+ 1;
     if (pageCurrent == lastPageNumber) {
         document.getElementById("nextPage").disabled = "true";
-        for (var i = 10 * pageCurrent - 10; i < notice.length - 1; i++) {
+        for (var i = 10 * pageCurrent - 10; i < notice.length ; i++) {
             createTitle(notice[i]);
         }
     }
     else {
-        for (var i = 10 * pageCurrent - 10; i < 10 * pageCurrent - 1; i++) {
+        for (var i = 10 * pageCurrent - 10; i < 10 * pageCurrent ; i++) {
             createTitle(notice[i]);
         }
        
@@ -62,7 +62,7 @@ function previousPageShow(evt) {
     if (pageCurrent == 1) {
         document.getElementById("previousPage").disabled = "true";
     }
-    for (var i = 10 * pageCurrent - 10; i < 10 * pageCurrent - 1; i++) {
+    for (var i = 10 * pageCurrent - 10; i < 10 * pageCurrent; i++) {
         createTitle(notice[i]);
     }
     document.getElementById("currentPage").value = pageCurrent;
