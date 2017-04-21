@@ -99,3 +99,7 @@ td > table {
     text-align:center;
     height:35px;
 }
+
+.error {
+    margin-left:16%;
+}

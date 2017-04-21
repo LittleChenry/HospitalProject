@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,7 +29,7 @@
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../CSS/rootMain.css" />
-    
+    <script src="../Scripts/rootMainJS.js" type="text/javascript"></script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -146,7 +146,7 @@
 
             <div id="menu" class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse collapse">
-                    <ul class="frame-list nav in" id="side-menu" style="margin-top:0px;">
+                    <ul class="nav in" id="side-menu" style="margin-top:0px;">
                     	<li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <div class="user-panel">
@@ -164,16 +164,16 @@
                             <a href="Root-information.aspx"><i class="fa fa-edit fa-fw"></i> <span>消息发布</span></a>
                         </li>
                         <li>
-                            <a href="Root-InfoManage.aspx"><i class="fa fa-edit fa-fw"></i> <span>消息管理</span></a>
+                            <a href="Root-InfoManage.aspx" title="no"><i class="fa fa-edit fa-fw"></i> <span>消息管理</span></a>
                         </li>
                         <li>
                             <a href="#" class="parent"><i class="fa fa-group fa-fw"></i> <span>用户管理</span><span class="fa arrow"></span></a>
-                            <ul class="second-ul nav nav-second-level collapse">
+                            <ul class="nav nav-second-level collapse">
                                 <li>
-                                    <a href="Root-userInformation.aspx"><span>用户信息</span></a>
+                                    <a href="Root-userInformation.aspx" title="no"><span>用户信息</span></a>
                                 </li>
                                 <li>
-                                    <a href="Root-user2role.aspx"><span>角色绑定</span></a>
+                                    <a href="Root-user2role.aspx" title="no"><span>角色绑定</span></a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -181,41 +181,41 @@
                         <li>
                             <a href="#" class="parent"><i class="fa fa-group fa-fw"></i> <span>角色管理</span><span class="fa arrow"></span>
                             </a>
-                            <ul class="second-ul nav nav-second-level collapse">
+                            <ul class="nav nav-second-level collapse">
                             	<li>
-                            		<a href="#"><span> 角色信息</span></a>
+                            		<a href="Root-role.aspx" title="no"><span>角色信息</span></a>
                             	</li>
                             	<li>
-                            		<a href="#"><span> 功能绑定</span></a>
+                            		<a href="Root-function2role.aspx" title="no"><span>功能绑定</span></a>
                             	</li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-coffee fa-fw"></i> <span>功能管理</span></a>
+                            <a href="Root-function.aspx" title="no"><i class="fa fa-coffee fa-fw"></i> <span>功能管理</span></a>
                         </li>
                         <li>
                             <a href="#" class="parent"><i class="fa fa-sitemap fa-fw"></i> <span>设备管理</span><span class="fa arrow"></span></a>
-                            <ul class="second-ul nav nav-second-level collapse">
+                            <ul class="nav nav-second-level collapse">
                                 <li>
-                                    <a href="#"> Second Level Item</a>
+                                    <a href="#">Second Level Item</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Second Level Item</a>
+                                    <a href="#">Second Level Item</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Third Level <span class="fa arrow"></span></a>
+                                    <a href="#">Third Level <span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level collapse">
                                         <li>
-                                            <a href="#"> Third Level Item</a>
+                                            <a href="#">Third Level Item</a>
                                         </li>
                                         <li>
-                                            <a href="#"> Third Level Item</a>
+                                            <a href="#">Third Level Item</a>
                                         </li>
                                         <li>
-                                            <a href="#"> Third Level Item</a>
+                                            <a href="#">Third Level Item</a>
                                         </li>
                                         <li>
-                                            <a href="#"> Third Level Item</a>
+                                            <a href="#">Third Level Item</a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
@@ -257,7 +257,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-    <script src="../Scripts/rootMainJS.js"></script>
     <script src="../Scripts/jqOperate.js"></script>
 </body>
 </html>

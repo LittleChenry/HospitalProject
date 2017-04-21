@@ -11,8 +11,9 @@ window.onresize = function () {
     //alert("pagechanged!");
     var tabs = document.getElementsByClassName("targets");
     chooseLeftAndRight(tabs);
-    
+
 }
+
 window.addEventListener("load", Init, false);
 var addTagArea;
 var count;
@@ -49,6 +50,18 @@ function userLogout(evt) {
 }
 
 function createTag(evt) {
+    if (this.title != undefined && this.title == "yes") {
+        changeToThisPage(this);
+        if (evt && evt.preventDefault)
+            //因此它支持W3C的stopPropagation()方法
+            evt.preventDefault();
+        else
+            //否则，我们需要使用IE的方式来取消事件冒泡 
+            window.event.cancelBubble = true;
+        return false;
+    } else if (this.title != undefined && this.title == "no") {
+        this.title = "yes";
+    }
     var iframe = createIframe(this.href);//创建iframe
     var thisUrl = this.href;
     var name = this.getElementsByTagName("SPAN")[0].innerHTML;//获取导航名作为标签页名
@@ -69,8 +82,6 @@ function createTag(evt) {
     transferPage(thisUrl, iframe);
     tagNode.className = "targets choosed";
     addTagArea.appendChild(tagNode);
-    var tabs = document.getElementsByClassName("targets");
-    chooseLeftAndRight(tabs);
     addClickEvent();
     if (evt && evt.preventDefault)
         //因此它支持W3C的stopPropagation()方法
@@ -79,6 +90,33 @@ function createTag(evt) {
         //否则，我们需要使用IE的方式来取消事件冒泡 
         window.event.cancelBubble = true;
     return false;
+}
+
+function changeToThisPage(link) {
+    //找到自己的iframe
+    var iframes = document.getElementsByTagName("IFRAME");
+    var thisIframe;
+    for (var i = 0; i < iframes.length; i++) {
+        if (iframes[i].name.indexOf(link.href) > -1) {
+            thisIframe = iframes[i];
+            break;
+        }
+    }
+    hideAllIframe();
+    thisIframe.style.display = "block";
+    var allTags = addTagArea.getElementsByTagName("DIV");
+    for (var i = 0; i < allTags.length; i++) {
+        if (allTags[i].className.indexOf("choosed") > -1) {
+            removeChoosed(allTags[i]);
+        }
+    }
+    var span = addTagArea.getElementsByTagName("SPAN");
+    for (var i = 0; i < span.length; i++) {
+        if (span[i].innerHTML == link.getElementsByTagName("SPAN")[0].innerHTML) {
+            span[i].parentNode.className += " choosed";
+            break;
+        }
+    }
 }
 
 function chooseLeftAndRight(tabs) {
@@ -137,7 +175,7 @@ function chooseLeftAndRight(tabs) {
     adjustLeftAndRight(leftIndex, rightIndex, tabs);
 }
 
-function adjustLeftAndRight(left, right,tabs) {
+function adjustLeftAndRight(left, right, tabs) {
     for (var i = 0; i < tabs.length; i++) {
         if (i < left) {
             tabs[i].style.display = "none";
@@ -168,7 +206,7 @@ function LeftMoved() {
                 tabs[i - 1].style.display = "";
                 leftIndex = i - 1;
             } else {
-                alert("前面没有标签页了!"); 
+                alert("前面没有标签页了!");
                 break;
             }
         }
@@ -189,7 +227,7 @@ function RightMoved() {
     var tabs = document.getElementsByClassName("targets");
     var totalLength = 0;
     var leftIndex;
-    var rightIndex = tabs.length-1;
+    var rightIndex = tabs.length - 1;
     var pageWidth = document.body.clientWidth;
     var tabsMax = pageWidth - 290;
     for (var i = tabs.length - 1; i > 0; i--) {
@@ -244,7 +282,7 @@ function removeLeftAndRight(tabs) {
     removeClass("right", rightTab[0]);
 }
 
-function isClass(sClass,element){
+function isClass(sClass, element) {
     var k = 0;
     var arr = element.className.split(" ");
     for (var j = 0; j < arr.length; j++) {
@@ -253,14 +291,14 @@ function isClass(sClass,element){
             k = 1;
         }
     }
-    if(k==0){
+    if (k == 0) {
         return false;
-    }else{
+    } else {
         return true;
     }
 }
 
-function getByClass(tabs,sClass) {
+function getByClass(tabs, sClass) {
     var aResult = [];
     for (var i = 0; i < tabs.length; i++) {
         var arr = tabs[i].className.split(" ");
@@ -309,7 +347,7 @@ function transferPage(thisUrl, iframe) {
     var allTags = addTagArea.getElementsByTagName("DIV");
     for (var i = 0; i < allTags.length; i++) {
         if (allTags[i].className.indexOf("choosed") > -1) {
-            removeClass("choosed",allTags[i]);
+            removeChoosed(allTags[i]);
         }
     }
 }
@@ -320,15 +358,27 @@ function hideAllIframe() {
         ifms[i].style.display = "none";
     }
 }
+
 //移除className choosed
-function removeClass(rClass,thisElement) {
+function removeClass(rClass, thisElement) {
     var classNames = thisElement.className.split(" ");
     var rClassName = classNames[0];
     for (var i = 1; i < classNames.length; i++) {
         if (classNames[i] != rClass) {
             var temp = "";
-            temp = " "+classNames[i];
+            temp = " " + classNames[i];
             rClassName += temp;
+        }
+    }
+    thisElement.className = rClassName;
+}
+//移除className choosed
+function removeChoosed(thisElement) {
+    var classNames = thisElement.className.split(" ");
+    var rClassName = "";
+    for (var i = 0; i < classNames.length; i++) {
+        if (classNames[i] != "choosed") {
+            rClassName += classNames[i] + " ";
         }
     }
     thisElement.className = rClassName;
@@ -343,7 +393,7 @@ function changePage() {
     var allTags = addTagArea.getElementsByTagName("DIV");
     for (var i = 0; i < allTags.length; i++) {
         if (allTags[i].className.indexOf("choosed") > -1) {
-            removeClass("choosed", allTags[i]);
+            removeChoosed(allTags[i]);
         }
     }
     this.className += " choosed";
@@ -369,6 +419,18 @@ function addClickEvent() {
 }
 
 function closePage(e) {
+    var url = this.parentNode.getElementsByTagName("INPUT")[0].value;
+    var currentLink;
+    var links = document.getElementById('side-menu').getElementsByTagName("A");
+    for (var i = 0; i < links.length; i++) {
+        if (url.indexOf(links[i].href) > -1) {
+            currentLink = links[i];
+            break;
+        }
+    }
+    if (currentLink.title != undefined && currentLink.title == "yes") {
+        currentLink.title = "no";
+    }
     var tag = this.parentNode;
     if (tag.className.indexOf("choosed") == -1) {
         clearIframe(tag);//清除对应iframe
@@ -399,7 +461,6 @@ function closePage(e) {
     showPreviousPage(preNode);//显示选中标签内容
     clearIframe(tag);//清除对应iframe
     addTagArea.removeChild(tag);
-    //alert(document.getElementsByClassName("targets").length);
     if (e && e.stopPropagation)
         //因此它支持W3C的stopPropagation()方法
         e.stopPropagation();

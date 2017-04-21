@@ -271,7 +271,6 @@
                    </div>
                 </div>
             </div>
-        </div>
     <script src="../Scripts/userInformationJS.js" type="text/javascript"></script>
     <script src="../Scripts/chooseSee.js" type="text/javascript"></script>
     <script src="../Scripts/chooseAllJS.js" type="text/javascript"></script>
