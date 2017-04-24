@@ -55,12 +55,14 @@ function getCurrentItem() {
 
 function EditEquipment(evt) {
     evt.preventDefault();
+    var equipID = document.getElementById("equipID");
     var thisType = document.getElementById("formType");
     thisType.value = "update";
     var middleArea = document.getElementById("middleArea");
     var topArea = document.getElementById("topArea");
     var hidden = this.parentNode.getElementsByTagName("INPUT");
     var id = hidden[0].value;
+    equipID.value = id;
     document.getElementById("currentPage").value = hidden[1].value;
     getEquipmentInformation(id);
     FillForm();
@@ -134,7 +136,7 @@ function checkAll(evt) {
     }
     if (isAllGood == false) {
         evt.preventDefault();
-    }
+    } 
 }
 
 function checkElement(thisElement) {

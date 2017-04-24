@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class Root_Root_equipment : System.Web.UI.Page
 {
+    DataLayer sqlOperation = new DataLayer("sqlStr");
     private int deleteIndex;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,10 +25,39 @@ public partial class Root_Root_equipment : System.Web.UI.Page
             }
         }
     }
-
+    /// <summary>
+    /// 获取前台传来的设备信息修改，更新数据库equipment
+    /// </summary>
     private void Update()
     {
-        
+        //获取相应信息
+        string equipmentID = Request.Form["equipID"];
+        string equipmentName = Request.Form["equipmentName"];
+        string equipmentState = Request.Form["equipmentState"];
+        string onceTime = Request.Form["onceTime"];
+        string AMbeg = Request.Form["AMbeg"];
+        string AMEnd = Request.Form["AMEnd"];
+        string PMBeg = Request.Form["PMBeg"];
+        string PMEnd = Request.Form["PMEnd"];
+        string treatmentItem = Request.Form["changeTreatmentItem"];
+        //sql语句
+        string sqlCommand = "UPDATE equipment SET Name=@Name,State=@State,Timelength=@Timelength,"+
+                            "BeginTimeAM=@BeginTimeAM,EndTimeAM=@EndTimeAM,BegTimePM=@BegTimePM,"+
+                            "EndTimeTPM=@EndTimeTPM,TreatmentItem=@TreatmentItem WHERE ID=@ID";
+        //添加参数
+        sqlOperation.AddParameterWithValue("@ID",Convert.ToInt32(equipmentID));
+        sqlOperation.AddParameterWithValue("@Name",equipmentName);
+        sqlOperation.AddParameterWithValue("@State",equipmentState);
+        sqlOperation.AddParameterWithValue("@Timelength",Convert.ToInt32(onceTime));
+        sqlOperation.AddParameterWithValue("@BeginTimeAM", TimeStringToInt(AMbeg));
+        sqlOperation.AddParameterWithValue("@EndTimeAM",TimeStringToInt(AMEnd));
+        sqlOperation.AddParameterWithValue("@BegTimePM",TimeStringToInt(PMBeg));
+        sqlOperation.AddParameterWithValue("@EndTimeTPM",TimeStringToInt(PMEnd));
+        sqlOperation.AddParameterWithValue("@TreatmentItem", treatmentItem);
+        //执行
+        sqlOperation.ExecuteNonQuery(sqlCommand);
+        //成功提示
+        MessageBox.Message("修改成功!");
     }
 
     private void Insert()
@@ -68,5 +98,16 @@ public partial class Root_Root_equipment : System.Web.UI.Page
         GridViewRow row = equipmentGridView.Rows[deleteIndex];
         string id = (row.FindControl("equipmentID") as HiddenField).Value;
         e.InputParameters["id"] = id;
+    }
+    /// <summary>
+    /// 将时间转化成int，方便存入数据库
+    /// </summary>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    public int TimeStringToInt(string time)
+    {
+        string[] timeArray = time.Split(':');
+        int timeInt = Convert.ToInt32(timeArray[0]) * 60 + Convert.ToInt32(timeArray[1]);
+        return timeInt;
     }
 }

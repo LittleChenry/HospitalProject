@@ -135,6 +135,7 @@
     <div class="col-lg-3" id="topArea">
         <label id="error"></label>
         <form id="changefrm" method="post" action="Root-equipment.aspx">
+            <input type="hidden" id="equipID" name="equipID" />
             <input type="hidden" id="currentPage" name="currentPage" />
             <input type="hidden" name="ispostback" value="true" />
             <input type="hidden" name="formType" value="" id="formType" />
@@ -169,7 +170,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="noborder"><label for="AMEnd" class="height">下午开始时间</label></th>
+                        <th class="noborder"><label for="AMEnd" class="height">上午结束时间</label></th>
                         <td>
                             <input type="text" id="AMEnd" name="AMEnd" class="form-control controlHeight Time" placeholder="请输入上午结束使用设备时间" />
                         </td>
