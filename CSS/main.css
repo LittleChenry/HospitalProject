@@ -1,3 +1,58 @@
+.background-img-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.title-logo {
+    position:fixed;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.row-up {
+    margin-left:10px;
+    width:703px;
+}
+
+.img-logo {
+    width:600px;
+}
+
+.line {
+    width:673px;
+    border-bottom:1px solid;
+    margin-top:-60px;
+}
+
+.name-logo {
+    font-weight:400;
+    font-family:Microsoft YaHei;
+    color: #ffffff;
+    padding-left: 2px;
+    padding-top: 25px;
+}
+
+.letter {
+    text-align: justify;
+    font-size:10px;
+    margin-top: -25px;
+}
+
+.character {
+    text-align: justify;
+    font-size:16px;
+    margin-bottom: -25px;
+    margin-top: -25px;
+}
+
+.text-short {
+    text-align:justify;
+}
+
 .frame {
 	min-width: 1000px;
 }
