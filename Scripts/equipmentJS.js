@@ -136,7 +136,7 @@ function checkAll(evt) {
     }
     if (isAllGood == false) {
         evt.preventDefault();
-    }
+    } 
 }
 
 function checkElement(thisElement) {
