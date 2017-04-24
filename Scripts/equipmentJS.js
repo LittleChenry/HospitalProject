@@ -28,7 +28,7 @@ function Init() {
 //创建设备隶属治疗项目下拉菜单
 function createItemSelect(thisElement) {
     getCurrentItem();//获取当前所有隶属治疗项目
-    
+
     thisElement.options.length = 0;
     thisElement.options[0] = new Option("隶属项目");
     thisElement.options[0].value = "allItem";
@@ -55,12 +55,14 @@ function getCurrentItem() {
 
 function EditEquipment(evt) {
     evt.preventDefault();
+    var equipID = document.getElementById("equipID");
     var thisType = document.getElementById("formType");
     thisType.value = "update";
     var middleArea = document.getElementById("middleArea");
     var topArea = document.getElementById("topArea");
     var hidden = this.parentNode.getElementsByTagName("INPUT");
     var id = hidden[0].value;
+    equipID.value = id;
     document.getElementById("currentPage").value = hidden[1].value;
     getEquipmentInformation(id);
     FillForm();
@@ -141,12 +143,12 @@ function checkElement(thisElement) {
     var backClassName = "";
     var allClassName = thisElement.className.split(" ");
     for (var i = 0; i < allClassName.length; i++) {
-        backClassName += checkClassName(allClassName[i],thisElement) + " ";
+        backClassName += checkClassName(allClassName[i], thisElement) + " ";
     }
     thisElement.className = backClassName;
     if (backClassName.indexOf("invalid") > -1) {
         var error = document.getElementById("error");
-        if(thisElement.className.indexOf("IsEmpty") > -1){
+        if (thisElement.className.indexOf("IsEmpty") > -1) {
             error.innerHTML = "设备名不能为空";
         } else if (thisElement.className.indexOf("OnceTreatment") > -1) {
             error.innerHTML = "请输入0-199的时间间隔(单位分钟)";
@@ -158,7 +160,7 @@ function checkElement(thisElement) {
     return true;
 }
 
-function checkClassName(name,thisElement) {
+function checkClassName(name, thisElement) {
     var backString = "";
     switch (name) {
         case "":

@@ -135,6 +135,7 @@
     <div class="col-lg-3" id="topArea">
         <label id="error"></label>
         <form id="changefrm" method="post" action="Root-equipment.aspx">
+            <input type="hidden" id="equipID" name="equipID" />
             <input type="hidden" id="currentPage" name="currentPage" />
             <input type="hidden" name="ispostback" value="true" />
             <input type="hidden" name="formType" value="" id="formType" />
