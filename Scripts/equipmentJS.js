@@ -23,6 +23,7 @@ function Init() {
         }
     }
     document.getElementById("onceTime").addEventListener("blur", checkOnceTreat, false);
+    document.getElementById("insert").addEventListener("click", addEquipment, false);
 }
 
 //创建设备隶属治疗项目下拉菜单
@@ -154,6 +155,8 @@ function checkElement(thisElement) {
             error.innerHTML = "请输入0-199的时间间隔(单位分钟)";
         } else if (thisElement.className.indexOf("Time") > -1) {
             error.innerHTML = "请输入正确的时间(格式 xx:xx)";
+        } else if (thisElement.className.indexOf("treatItem") > -1) {
+            error.innerHTML = "请选择隶属项目";
         }
         return false;
     }
@@ -180,6 +183,12 @@ function checkClassName(name, thisElement) {
             break;
         case "Time":
             if (isAllGood && !checkTime(thisElement)) {
+                backString += "invalid ";
+            }
+            backString += name;
+            break;
+        case "treatItem":
+            if (isAllGood && (thisElement.selectedIndex == 0)) {
                 backString += "invalid ";
             }
             backString += name;
@@ -243,4 +252,14 @@ function checkOnceTreat() {
         error.innerHTML = "";
         removeClassName(this, "invalid");
     }
+}
+
+function addEquipment(evt) {
+    evt.preventDefault();
+    var middleArea = document.getElementById("middleArea");
+    var topArea = document.getElementById("topArea");
+    middleArea.style.display = "block";
+    topArea.style.display = "block";
+    var thisType = document.getElementById("formType");
+    thisType.value = "insert";
 }

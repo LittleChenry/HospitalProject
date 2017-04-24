@@ -34,6 +34,7 @@ public partial class Main_Login2 : System.Web.UI.Page
             string userName = reader["name"].ToString();
             string userNumber = reader["number"].ToString();
             UserInformation thisUser = new UserInformation(userID, userNumber, userName);
+            Session.Timeout = 600;
             Session["loginUser"] = thisUser;
         }
         sqlOperation.Close();

@@ -62,6 +62,37 @@ public partial class Root_Root_equipment : System.Web.UI.Page
 
     private void Insert()
     {
+        string equipmentName = Request.Form["equipmentName"];
+        string equipmentState = Request.Form["equipmentState"];
+        string onceTime = Request.Form["onceTime"];
+        string AMbeg = Request.Form["AMbeg"];
+        string AMEnd = Request.Form["AMEnd"];
+        string PMBeg = Request.Form["PMBeg"];
+        string PMEnd = Request.Form["PMEnd"];
+        string treatmentItem = Request.Form["changeTreatmentItem"];
+
+        string sqlCommand = "INSERT INTO equipment(Name,State,Timelength,BeginTimeAM,EndTimeAM,BegTimePM,EndTimeTPM,TreatmentItem)"
+            + " VALUES(@Name,@State,@Timelength,@BeginTimeAM,@EndTimeAM,@BegTimePM,@EndTimeTPM,@TreatmentItem)";
+        sqlOperation.AddParameterWithValue("@Name", equipmentName);
+        sqlOperation.AddParameterWithValue("@State", equipmentState);
+        sqlOperation.AddParameterWithValue("@Timelength", Convert.ToInt32(onceTime));
+        sqlOperation.AddParameterWithValue("@BeginTimeAM", TimeStringToInt(AMbeg));
+        sqlOperation.AddParameterWithValue("@EndTimeAM", TimeStringToInt(AMEnd));
+        sqlOperation.AddParameterWithValue("@BegTimePM", TimeStringToInt(PMBeg));
+        sqlOperation.AddParameterWithValue("@EndTimeTPM", TimeStringToInt(PMEnd));
+        sqlOperation.AddParameterWithValue("@TreatmentItem", treatmentItem);
+
+        sqlOperation.ExecuteNonQuery(sqlCommand);
+        CreateAppointment(equipmentName, onceTime, AMbeg, AMEnd, PMBeg, PMEnd, treatmentItem);
+        MessageBox.Message("新增成功!");
+    }
+
+    private void CreateAppointment(string name, string OnceTime, string AMbeg, string AMEnd, string PMBeg, string PMEnd, string treatmentItem)
+    {
+        sqlOperation.clearParameter();
+        string sqlCommand = "SELECT ID FROM equipment WHERE Name=@name ORDER BY ID DESC";
+        sqlOperation.AddParameterWithValue("@name", name);
+        int id = int.Parse(sqlOperation.ExecuteScalar(sqlCommand));
 
     }
 

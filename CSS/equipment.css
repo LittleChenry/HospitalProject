@@ -28,6 +28,15 @@
     margin:0 auto;
     padding:1px;
     width:29.6666%;
-    margin-top:12%;
+    margin-top:10%;
     display:none;
+}
+
+.toDivRight {
+    text-align:center;
+    margin:0 auto;
+    margin-top:6px;
+    margin-left:66.66666%;
+    padding-left:16.6666667%;
+    
 }

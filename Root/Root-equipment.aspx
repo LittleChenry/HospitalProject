@@ -130,6 +130,9 @@
             </asp:GridView>
         </div>
     </form>
+    <div class="col-lg-3 toDivRight">
+        <input type="button" value="新增设备" id="insert" />
+    </div>
     <div class="col-lg-12" id="middleArea">
     </div>
     <div class="col-lg-3" id="topArea">
@@ -190,7 +193,7 @@
                     <tr>
                         <th class="noborder"><label for="changeTreatmentItem" class="height">隶属项目</label></th>
                         <td>
-                            <select id="changeTreatmentItem" name="changeTreatmentItem" class="form-control">                
+                            <select id="changeTreatmentItem" name="changeTreatmentItem" class="form-control treatItem">                
                             </select>
                         </td>
                     </tr>
