@@ -29,7 +29,6 @@
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../CSS/rootMain.css" />
-    <script src="../Scripts/rootMainJS.js" type="text/javascript"></script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -42,9 +41,8 @@
                 </button>
                 <span class="navbar-brand">医院管理系统</span>
             </div>
-            <!-- /.navbar-header -->
-
             <ul class="nav navbar-top-links navbar-right">
+                <li id="current-date" class="dropdown"></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -69,9 +67,7 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-messages -->
                 </li>
-                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -100,9 +96,7 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-tasks -->
                 </li>
-                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -124,9 +118,7 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-alerts -->
                 </li>
-                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -138,15 +130,12 @@
                         <li><a href="#" id="logout"><i class="fa fa-sign-out fa-fw"></i>退出登录</a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-user -->
                 </li>
-                <!-- /.dropdown -->
             </ul>
-            <!-- /.navbar-top-links -->
 
             <div id="menu" class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse collapse">
-                    <ul class="nav in" id="side-menu" style="margin-top:0px;">
+                    <ul class="frame-list nav in" id="side-menu" style="margin-top:0px;">
                     	<li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <div class="user-panel">
@@ -161,14 +150,19 @@
                             </div>
                         </li>
                         <li>
-                            <a href="Root-information.aspx"><i class="fa fa-edit fa-fw"></i> <span>消息发布</span></a>
+                            <a href="#" class="parent"><i class="fa fa-pencil-square-o fa-fw"></i> <span>消息模块</span><span class="fa arrow"></span></a>
+                            <ul class="second-ul nav nav-second-level collapse">
+                            	<li>
+                            		<a href="Root-information.aspx" class="no"><span>消息发布</span></a>
+                            	</li>
+                            	<li>
+                            		<a href="Root-InfoManage.aspx" class="no"><span>消息管理</span></a>
+                            	</li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="Root-InfoManage.aspx" class="no"><i class="fa fa-edit fa-fw"></i> <span>消息管理</span></a>
-                        </li>
-                        <li>
-                            <a href="#" class="parent"><i class="fa fa-group fa-fw"></i> <span>用户管理</span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
+                            <a href="#" class="parent"><i class="fa fa-user fa-fw"></i> <span>用户管理</span><span class="fa arrow"></span></a>
+                            <ul class="second-ul nav nav-second-level collapse">
                                 <li>
                                     <a href="Root-userInformation.aspx" class="no"><span>用户信息</span></a>
                                 </li>
@@ -176,12 +170,11 @@
                                     <a href="Root-user2role.aspx" class="no"><span>角色绑定</span></a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                         <li>
                             <a href="#" class="parent"><i class="fa fa-group fa-fw"></i> <span>角色管理</span><span class="fa arrow"></span>
                             </a>
-                            <ul class="nav nav-second-level collapse">
+                            <ul class="second-ul nav nav-second-level collapse">
                             	<li>
                             		<a href="Root-role.aspx" class="no"><span>角色信息</span></a>
                             	</li>
@@ -195,39 +188,15 @@
                         </li>
                         <li>
                             <a href="#" class="parent"><i class="fa fa-sitemap fa-fw"></i> <span>设备管理</span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
+                            <ul class="second-ul nav nav-second-level collapse">
                                 <li>
                                     <a href="Root-equipment.aspx" class="no"><span>设备管理</span></a>
                                 </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level collapse">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
                             </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                     </ul>
                 </div>
-                <!-- /.sidebar-collapse -->
             </div>
-            <!-- /.navbar-static-side -->
         </nav>
     <div id="page-wrapper" style="padding:0px;">
             <div id="targets" class="tags">
@@ -235,15 +204,15 @@
                     <p class="glyphicon glyphicon-backward"></p>
                 </a>
                 <div class="targets choosed right left" style="margin-left: 0px;">
-                    <span class="tag-name">主页</span>
-                    <input type="hidden" value="Root-Welcome.aspx 0" />        
+                    <a href="javascript:;" class="tag-name" style="text-decoration:none;">主页</a>
+                    <input type="hidden" value="Root-Welcome.aspx 0" />
                 </div>
                 <a id="move-right" href="javascript:;">
                     <p class="glyphicon glyphicon-forward"></p>
                 </a>
             </div>
-        	<div id="iframeArea" class="self-frame panel-group">
-                <iframe name="urlRoot-Welcome.aspx0" src="Root-Welcome.aspx" style="width: 100%; height: 750px; border: 0px;"></iframe>
+        	<div id="iframeArea" class="self-frame panel-group" style="margin-bottom:0px;">
+                <iframe id="main-frame" name="urlRoot-Welcome.aspx0" src="Root-Welcome.aspx" style="width: 100%; min-height: 750px; border: 0px;"></iframe>
             </div>
     </div>
     <!-- jQuery -->
@@ -257,6 +226,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../Scripts/rootMainJS.js" type="text/javascript"></script>
     <script src="../Scripts/jqOperate.js"></script>
 </body>
 </html>

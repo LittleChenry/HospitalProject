@@ -10,7 +10,10 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title></title>
+    <title>消息管理</title>
+    <!-- Main CSS -->
+    <link href="../css/main.css" rel="stylesheet" />
+
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -28,50 +31,47 @@
     <link href="../vendor/morrisjs/morris.css" rel="stylesheet" />
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/infomanage.css" rel="stylesheet" type="text/css" />
 
     <script src="../Scripts/RootInfoManageJS.js" type="text/javascript"></script>
 </head>
 <body>
     <input id="type" type="hidden" value="Root" />
-    <div style="min-height:556px;">
-        <h1 class="page-header title">信息管理</h1>
-          <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            消息管理窗口
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table class="table table-striped table-bordered table-hover" >
-                                <thead>
-                                    <tr>
-                                        <th style="width:40%">消息标题</th>
-                                        <th style="width:20%">消息发布时间</th>
-                                        <th style="width:10%">删除处理</th>
-                                        <th style="width:10%">置顶处理</th>
-                                        <th style="width:10%">置新处理</th>
-                                        <th style="width:10%">置热处理</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="infomanagetable">
-                                    
-                                    </tbody>
-                                </table>
-                            <div class="row">
-                    <span style="float:right">
-                     <button class="btn btn-primary btn-xs firstpage" id="firstPage">首页</button>
-                     <button class="btn btn-primary btn-xs firstpage" id="nextPage">下一页</button>
-                     <button class="btn btn-primary btn-xs firstpage" id="previousPage">上一页</button>
-                     <button class="btn btn-primary btn-xs firstpage" id="lastPage">尾页</button>
-                     <input type="hidden" id="currentPage" />
-                     </span>
-                     </div>
-                            </div>
+    <div id="page-wrapper" style="border:0px;margin:0px; min-height: 723px;background:#f8f8f8;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">消息管理</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-hover" >
+                        <thead>
+                            <tr>
+                                <th style="width:35%">消息标题</th>
+                                <th style="width:10%">消息发布时间</th>
+                                <th style="width:10%">删除处理</th>
+                                <th style="width:15%">置顶处理</th>
+                                <th style="width:15%">置新处理</th>
+                                <th style="width:15%">置热处理</th>
+                            </tr>
+                        </thead>
+                        <tbody id="infomanagetable"></tbody>
+                    </table>
+                    <div class="row">
+                        <div class="table-button">
+                            <button class="btn btn-primary btn-sm firstpage" id="firstPage">首页</button>
+                            <button class="btn btn-primary btn-sm firstpage" id="previousPage">上一页</button>
+                            <button class="btn btn-primary btn-sm firstpage" id="nextPage">下一页</button>
+                            <button class="btn btn-primary btn-sm firstpage" id="lastPage">尾页</button>
+                            <input type="hidden" id="currentPage" />
                         </div>
                     </div>
-              </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="../vendor/jquery/jquery.min.js"></script>
 

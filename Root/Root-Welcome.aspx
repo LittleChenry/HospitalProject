@@ -11,6 +11,9 @@
     <meta name="author" content=""/>
 
     <title></title>
+    <!-- Main CSS -->
+    <link href="../css/main.css" rel="stylesheet" />
+
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -30,32 +33,135 @@
 </head>
 <body>
     <input id="type" type="hidden" value="Root" />
-    <div style="min-height:556px;">
-        <h1 class="page-header title">欢迎使用本系统</h1>
-        <div class="panel panel-default notice">
-            <div class="panel-heading">
-                <h3 class="panel-title">通知栏</h3>
+    <div id="page-wrapper" style="border:0px;margin:0px; min-height: 923px;background:#f8f8f8;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">欢迎使用本系统</h1>
             </div>
-            <div class="panel-body">
-                <div class="row">
-                    <!--<div class="col-lg-6">-->
-                        <ul id="information" >
-                            
-                        </ul>
-
-                    <!--</div>-->
-                </div>
-                <div class="row">
-                    <span style="float:right">
-                     <button class="btn btn-primary btn-xs firstpage" id="firstPage">首页</button>
-                    <button class="btn btn-primary btn-xs firstpage" id="nextPage">下一页</button>
-                    <button class="btn btn-primary btn-xs firstpage" id="previousPage">上一页</button>
-                    <button class="btn btn-primary btn-xs firstpage" id="lastPage">尾页</button>
-                        <input type="hidden" id="currentPage" />
-                    </span>
-                </div>
-            </div>
+            <!-- /.col-lg-12 -->
         </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <span class="module-title">消息模块</span>
+                    </div>
+                    <div class="panel-body">
+                        <p><a href="#">消息标题1</a></p>
+                        <p><a href="#">消息标题2</a></p>
+                        <p><a href="#">消息标题3</a></p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#" style="text-decoration:none;">更多</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <span class="module-title">账号申请</span>
+                    </div>
+                    <div class="panel-body">
+                        <p>姓名1</p>
+                        <p>姓名2</p>
+                        <p>姓名3</p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#" style="text-decoration:none;">更多</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <span class="module-title">设备状态</span>
+                    </div>
+                    <div class="panel-body">
+                        <p>设备1状态</p>
+                        <p>设备2状态</p>
+                        <p>设备3状态</p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#" style="text-decoration:none;">更多</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <span class="module-title">科室工作</span>
+                    </div>
+                    <div class="panel-body">
+                        <p>登记处</p>
+                        <p>医师</p>
+                        <p>模拟技师</p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#" style="text-decoration:none;">更多</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <span class="module-title">违规操作</span>
+                    </div>
+                    <div class="panel-body">
+                        <p>违规操作1</p>
+                        <p>违规操作2</p>
+                        <p>违规操作3</p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#" style="text-decoration:none;">更多</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        <span class="module-title">操作指南</span>
+                    </div>
+                    <div class="panel-body">
+                        <p><a href="#">操作1</a></p>
+                        <p><a href="#">操作2</a></p>
+                        <p><a href="#">操作3</a></p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#" style="text-decoration:none;">更多</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <span class="module-title">友情链接</span>
+                    </div>
+                    <div class="panel-body">
+                        <p><a href="#">链接1</a></p>
+                        <p><a href="#">链接2</a></p>
+                        <p><a href="#">链接3</a></p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#" style="text-decoration:none;">更多</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
     </div>
 </body>
 </html>

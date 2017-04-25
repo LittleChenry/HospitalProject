@@ -180,3 +180,11 @@
 .self-frame {
     margin-bottom: 0px;
 }
+
+.module-title {
+    font-size:16px;
+}
+
+.table-button {
+    margin:0px 15px 0px 15px;
+}

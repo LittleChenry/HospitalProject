@@ -17,6 +17,16 @@ window.onresize = function () {
 window.addEventListener("load", Init, false);
 var addTagArea;
 var count;
+var currentdate = dateformate(new Date());
+document.getElementById("current-date").innerHTML = currentdate;
+var divHeight = windowHeight() - 45;
+document.getElementById("main-frame").style.minHeight = divHeight + "px";
+
+function windowHeight() {
+    var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+    height = height - 50;
+    return height;
+}
 
 function CreateMoveButton() {
     var moveLeft = document.getElementById("move-left");
@@ -49,6 +59,16 @@ function userLogout(evt) {
     evt.preventDefault();
 }
 
+
+function dateformate(date) {
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? '0' + m : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    return y + '年' + m + '月' + d + '日';
+};
+
 function createTag(evt) {
     if (this.className != undefined && this.className == "yes") {
         changeToThisPage(this);
@@ -66,8 +86,10 @@ function createTag(evt) {
     var thisUrl = this.href;
     var name = this.getElementsByTagName("SPAN")[0].innerHTML;//获取导航名作为标签页名
     var title = document.createTextNode(name);
-    var textNode = document.createElement("SPAN");
+    var textNode = document.createElement("a");
+    textNode.href = "javascript:;";
     textNode.className = "tag-name";
+    textNode.style = "text-decoration:none;";
     textNode.appendChild(title);
     var buttonNode = createButton(this);//创建关闭标签页按钮节点
     buttonNode.addEventListener("click", closePage, false);
@@ -110,7 +132,7 @@ function changeToThisPage(link) {
             removeChoosed(allTags[i]);
         }
     }
-    var span = addTagArea.getElementsByTagName("SPAN");
+    var span = addTagArea.getElementsByTagName("a");
     for (var i = 0; i < span.length; i++) {
         if (span[i].innerHTML == link.getElementsByTagName("SPAN")[0].innerHTML) {
             span[i].parentNode.className += " choosed";
@@ -329,9 +351,10 @@ function createIframe(url) {
         if (currentIframe[i].name == "ifm" + url + count)
             count++;
     }
+    var divHeight = document.getElementById("page-wrapper").offsetHeight-40;
     iframe.name = "ifm" + url + count;
     iframe.style.width = "100%";
-    iframe.style.height = "950px";
+    iframe.style.minHeight = divHeight+"px";
     iframe.style.border = "0px";
     iframeArea.appendChild(iframe);
     return iframe;

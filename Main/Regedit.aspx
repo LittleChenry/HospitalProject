@@ -20,6 +20,7 @@
         <img src="../images/hospital.png" />
     </div>
     <div class="name-logo">
+        <input type="hidden" name="ispostback" value="true" />
         <div class="row-up row">
             <div class="col-md-3" style="width:260px;">
                 <p class="character">江 苏 省 人 民 医 院<span style="display: inline-block; padding-left: 100%;"></span></p>
