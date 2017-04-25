@@ -10,8 +10,11 @@ public partial class Main_Login2 : System.Web.UI.Page
     DataLayer sqlOperation = new DataLayer("sqlStr");//数据库操作对象
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session.Clear();
         string ispostback = Request.QueryString["ispostback"];
+        if (ispostback == null)
+        {
+            Session.Clear();
+        }
         if (ispostback != null && ispostback == "true")
         {
             RecordUserInformation();
