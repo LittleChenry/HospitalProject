@@ -8,19 +8,45 @@ function Init() {
     document.getElementById('addRoleFrm').addEventListener("submit", checkAll, false);
     document.getElementById('addRoleFrm').addEventListener("reset", resetForm, false);
     document.getElementById('roleName').addEventListener("blur", checkReapt, false);
+    document.getElementById("cannel").addEventListener("click", cannel, false);
+}
+
+function cannel(evt) {
+    evt.preventDefault();
+    document.getElementById("error").innerHTML = "";
+
+    var allInput = document.getElementById('addRoleFrm').getElementsByTagName("INPUT");
+    for (var i = 0; i < allInput.length; i++) {
+        if (allInput[i].className.indexOf("invalid") > -1) {
+            recoverClassName(allInput[i]);//恢复Input样式
+        }
+        if (allInput[i].id == "roleName" || allInput[i].id == "roleDescription") {
+            allInput[i].value = "";
+        }
+        if (allInput[i].type == "checkbox") {
+
+        } allInput[i].checked = false;
+    }
+    document.getElementById("hidePart").style.display = "none";
+    document.getElementById('enableSeeSpan').className = "fa fa-angle-double-left";
+
+    document.getElementById("middleArea").style.display = "none";
+    document.getElementById("topArea").style.display = "none";
 }
 
 function showAddArea(evt) {
     createFunction();
-    var addArea = document.getElementById("addArea");
-    var style = (addArea.currentStyle != undefined ? addArea.currentStyle.display : window.getComputedStyle(addArea, null).display);
-    if (style == "none") {
-        addArea.style.display = "block";
-        this.value = "隐藏";
-    } else {
-        addArea.style.display = "none";
-        this.value = "新增用户";
-    }
+    //var addArea = document.getElementById("addArea");
+    //var style = (addArea.currentStyle != undefined ? addArea.currentStyle.display : window.getComputedStyle(addArea, null).display);
+    //if (style == "none") {
+    //    addArea.style.display = "block";
+    //    this.value = "隐藏";
+    //} else {
+    //    addArea.style.display = "none";
+    //    this.value = "新增用户";
+    //}
+    document.getElementById("middleArea").style.display = "block";
+    document.getElementById("topArea").style.display = "block";
     document.getElementById("allFunction").addEventListener("click", chooseAll, false);
 }
 

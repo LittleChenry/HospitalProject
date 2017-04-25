@@ -23,6 +23,7 @@
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
     <link href="../CSS/Root-userInformation.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/equipment.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="frm" method="post" runat="server">
@@ -170,9 +171,10 @@
         </div>
             </form>
             <input id="showAdd" type="button" value="新增用户" class="newUser" />
-            <div class="col-lg-12 tohidden" id="addNewUser">
-                <div class="col-lg-3">&nbsp;</div>
-                <div class="col-lg-6 edit">
+            <div class="col-lg-12" id="middleArea">
+            </div>
+
+                <div class="col-lg-6 edit" id="topArea">
                     <div class="table-responsive">
                         <form id="addNewFrm" action="Root-userInformation.aspx" method="post">
                             <input type="hidden" name="ispostback" value="true" />
@@ -262,7 +264,7 @@
                                         <tr>
                                             <td colspan="2">
                                                 <input type="submit" value="提交" class="regedit-button col-sm-4 btn btn-success btn-lg buttonMar" />
-                                                <input type="reset" value="重置" class="regedit-button col-sm-4 btn btn-success btn-lg" />
+                                                <input id="cannel" type="button" value="取消" class="regedit-button col-sm-4 btn btn-success btn-lg" />
                                             </td>
                                         </tr>                                        
                                     </tbody>
@@ -270,7 +272,7 @@
                         </form>
                    </div>
                 </div>
-            </div>
+
     <script src="../Scripts/userInformationJS.js" type="text/javascript"></script>
     <script src="../Scripts/chooseSee.js" type="text/javascript"></script>
     <script src="../Scripts/chooseAllJS.js" type="text/javascript"></script>

@@ -16,8 +16,33 @@ function Init() {
     document.getElementById("userPassword").addEventListener("blur", checkUserkey, false);  //第一次密码输入框
     document.getElementById("checkPassword").addEventListener("blur", checkRePswRight, false);//第二次密码输入框
     document.getElementById("addNewFrm").addEventListener("reset", resetForm, false);       //表单重置
+    document.getElementById("cannel").addEventListener("click", cannel, false);
 }
 
+function cannel(evt) {
+    evt.preventDefault();
+
+    document.getElementById("error").innerHTML = "";
+
+    var allInput = document.getElementById("addNewFrm").getElementsByTagName("INPUT");
+    for (var i = 0; i < allInput.length; i++) {
+        if (allInput[i].className.indexOf("invalid") > -1) {
+            recoverClassName(allInput[i]);//恢复Input样式
+        }
+        if (allInput[i].type == "text" || allInput[i].type == "password") {
+            allInput[i].value = "";
+        }
+        if (allInput[i].type == "checkbox") {
+            allInput[i].checked = false;
+        }
+    }
+
+    var addArea = document.getElementById("topArea");
+    var middle = document.getElementById("middleArea");
+    middle.style.display = "none";
+    addArea.style.display = "none";
+
+}
 
 //GridView电话号码格式规范
 function phoneFormat() {
@@ -33,15 +58,18 @@ function phoneFormat() {
 }
 //点击新增用户按钮显示注册区域，同时改变按钮样式
 function showAdd(evt) {
-    var addArea = document.getElementById("addNewUser");
-    var style = (addArea.currentStyle != undefined) ? addArea.currentStyle.display : window.getComputedStyle(addArea, null).display;
-    if (style == "none") {//addArea.style.display == "none"  window.getComputedStyle(addArea, null).display == " none"
-        this.value = "隐藏";
-        addArea.style.display = "block";
-    } else {
-        this.value = "新增用户";
-        addArea.style.display = "none";
-    }
+    var addArea = document.getElementById("topArea");
+    var middle = document.getElementById("middleArea");
+    middle.style.display = "block";
+    addArea.style.display = "block";
+    //var style = (addArea.currentStyle != undefined) ? addArea.currentStyle.display : window.getComputedStyle(addArea, null).display;
+    //if (style == "none") {//addArea.style.display == "none"  window.getComputedStyle(addArea, null).display == " none"
+    //    this.value = "隐藏";
+    //    addArea.style.display = "block";
+    //} else {
+    //    this.value = "新增用户";
+    //    addArea.style.display = "none";
+    //}
 }
 //新增用户区域生成选择角色的多选框
 function createRole() {

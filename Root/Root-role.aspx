@@ -22,6 +22,7 @@
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
     <link href="../CSS/Root-userInformation.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/equipment.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="col-lg-12">
@@ -88,9 +89,9 @@
     </div>
     </form>
     <input id="showAdd" type="button" value="新增角色" class="newUser" />
-        <div id="addArea" class="col-lg-12 tohidden">
-            <div class="col-lg-3">&nbsp;</div>
-            <div class="col-lg-6">
+    <div class="col-lg-12" id="middleArea">
+    </div>
+            <div class="col-lg-7" id="topArea">
                 <div class="table-responsive">
                     <form id="addRoleFrm" method="post" action="Root-role.aspx">
                         <input type="hidden" name="ispostback" value="true" />
@@ -128,7 +129,7 @@
                                 <tr>
                                     <td colspan="2">
                                         <input type="submit" value="提交" class="regedit-button col-sm-4 btn btn-success btn-lg buttonMar" />
-                                        <input type="reset" value="重置" class="regedit-button col-sm-4 btn btn-success btn-lg" />
+                                        <input id="cannel" type="button" value="取消" class="regedit-button col-sm-4 btn btn-success btn-lg" />
                                     </td>
                                 </tr>     
                             </tbody>
@@ -136,7 +137,6 @@
                     </form>
                 </div>
             </div>
-        </div>
     <script src="../Scripts/functionJS.js" type="text/javascript"></script>
     <script src="../Scripts/chooseSee.js" type="text/javascript"></script>
 </body>

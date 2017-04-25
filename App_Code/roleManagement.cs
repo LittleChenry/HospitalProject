@@ -36,5 +36,7 @@ public class roleManagement
         string sqlCommand = "DELETE FROM role WHERE ID=@id";
         sqlOperation.AddParameterWithValue("@id", id);
         sqlOperation.ExecuteNonQuery(sqlCommand);
+        sqlCommand = "DELETE FROM function2role WHERE Role_ID=@id";
+        sqlOperation.ExecuteNonQuery(sqlCommand);
     }
 }
