@@ -16,7 +16,7 @@ public class AutoRun
     public static void Execute()
     {
         Timer objTimer = new Timer();
-        objTimer.Interval = 300000; 
+        objTimer.Interval = 900000; 
         objTimer.Enabled = true;
         objTimer.Elapsed += new ElapsedEventHandler(objTimer_Elapsed);
     }
@@ -35,9 +35,9 @@ public class AutoRun
             IsOpen = true;
             //OpenTime = DateTime.Today;
             LastOpenTime = DateTime.Today;
-            DataLayer sqlOperation = new DataLayer("sqlStr");
-            string sqlCommand = "INSERT INTO role(NAME) VALUE('test4')";
-            sqlOperation.ExecuteNonQuery(sqlCommand);
+            //DataLayer sqlOperation = new DataLayer("sqlStr");
+            //string sqlCommand = "INSERT INTO role(NAME) VALUE('test4')";
+            //sqlOperation.ExecuteNonQuery(sqlCommand);
         }
     }
 
