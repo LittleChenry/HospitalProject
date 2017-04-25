@@ -83,7 +83,10 @@ public partial class Root_Root_equipment : System.Web.UI.Page
         sqlOperation.AddParameterWithValue("@TreatmentItem", treatmentItem);
 
         sqlOperation.ExecuteNonQuery(sqlCommand);
-        CreateAppointment(equipmentName, onceTime, AMbeg, AMEnd, PMBeg, PMEnd, treatmentItem);
+        //if (int.Parse(equipmentState) == 1)
+        //{
+            CreateAppointment(equipmentName, onceTime, AMbeg, AMEnd, PMBeg, PMEnd, treatmentItem);
+        //}
         MessageBox.Message("新增成功!");
     }
 
@@ -93,7 +96,43 @@ public partial class Root_Root_equipment : System.Web.UI.Page
         string sqlCommand = "SELECT ID FROM equipment WHERE Name=@name ORDER BY ID DESC";
         sqlOperation.AddParameterWithValue("@name", name);
         int id = int.Parse(sqlOperation.ExecuteScalar(sqlCommand));
+        int intAMBeg = TimeStringToInt(AMbeg);
+        int intAMEnd = TimeStringToInt(AMEnd);
+        int intPMBeg = TimeStringToInt(PMBeg);
+        int intPMEnd = TimeStringToInt(PMEnd);
 
+        int AMTime = intAMEnd - intAMBeg;
+        int PMTime = intPMEnd - intPMBeg;
+
+        int AMFrequency = AMTime / int.Parse(OnceTime);
+        int PMFrequency = PMTime / int.Parse(OnceTime);
+
+        sqlCommand = "INSERT INTO appointment(Task,Date,Equipment_ID,Begin,End,State) VALUES(@task,@date,@id,@begin,@end,0)";
+        sqlOperation.AddParameterWithValue("@task", treatmentItem);
+        sqlOperation.AddParameterWithValue("@id", id);
+        for (int i = 0; i < 2; i++)
+        {
+            string Date = DateTime.Today.AddDays(i+1).ToString();
+            string day = Date.Split(' ')[0];
+            sqlOperation.AddParameterWithValue("@date", day);
+            for (int j = 0; j < AMFrequency; j++)
+            {
+                int begin = intAMBeg + (j * int.Parse(OnceTime));
+                int end = begin + int.Parse(OnceTime);
+                sqlOperation.AddParameterWithValue("@begin", begin);
+                sqlOperation.AddParameterWithValue("@end", end);
+                sqlOperation.ExecuteNonQuery(sqlCommand);
+            }
+
+            for (int k = 0; k < PMFrequency; k++)
+            {
+                int Pbegin = intPMBeg + (k * int.Parse(OnceTime));
+                int PEnd = intPMEnd + (k * int.Parse(OnceTime));
+                sqlOperation.AddParameterWithValue("@begin", Pbegin);
+                sqlOperation.AddParameterWithValue("@end", PEnd);
+                sqlOperation.ExecuteNonQuery(sqlCommand);
+            }
+        }
     }
 
     public string GetState(object str)

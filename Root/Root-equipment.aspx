@@ -175,7 +175,7 @@
                     <tr>
                         <th class="noborder"><label for="AMEnd" class="height">上午结束时间</label></th>
                         <td>
-                            <input type="text" id="AMEnd" name="AMEnd" class="form-control controlHeight Time" placeholder="请输入上午结束使用设备时间" />
+                            <input type="text" id="AMEnd" name="AMEnd" class="form-control controlHeight Time AMEnd" placeholder="请输入上午结束使用设备时间" />
                         </td>
                     </tr>
                     <tr>
@@ -187,7 +187,7 @@
                     <tr>
                         <th class="noborder"><label for="PMEnd" class="height">下午结束时间</label></th>
                         <td>
-                            <input type="text" id="PMEnd" name="PMEnd" class="form-control controlHeight Time" placeholder="请输入下午结束使用设备时间" />
+                            <input type="text" id="PMEnd" name="PMEnd" class="form-control controlHeight Time PMEnd" placeholder="请输入下午结束使用设备时间" />
                         </td>
                     </tr>
                     <tr>

@@ -164,16 +164,16 @@
                             <a href="Root-information.aspx"><i class="fa fa-edit fa-fw"></i> <span>消息发布</span></a>
                         </li>
                         <li>
-                            <a href="Root-InfoManage.aspx" title="no"><i class="fa fa-edit fa-fw"></i> <span>消息管理</span></a>
+                            <a href="Root-InfoManage.aspx" class="no"><i class="fa fa-edit fa-fw"></i> <span>消息管理</span></a>
                         </li>
                         <li>
                             <a href="#" class="parent"><i class="fa fa-group fa-fw"></i> <span>用户管理</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse">
                                 <li>
-                                    <a href="Root-userInformation.aspx" title="no"><span>用户信息</span></a>
+                                    <a href="Root-userInformation.aspx" class="no"><span>用户信息</span></a>
                                 </li>
                                 <li>
-                                    <a href="Root-user2role.aspx" title="no"><span>角色绑定</span></a>
+                                    <a href="Root-user2role.aspx" class="no"><span>角色绑定</span></a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -183,21 +183,21 @@
                             </a>
                             <ul class="nav nav-second-level collapse">
                             	<li>
-                            		<a href="Root-role.aspx" title="no"><span>角色信息</span></a>
+                            		<a href="Root-role.aspx" class="no"><span>角色信息</span></a>
                             	</li>
                             	<li>
-                            		<a href="Root-function2role.aspx" title="no"><span>功能绑定</span></a>
+                            		<a href="Root-function2role.aspx" class="no"><span>功能绑定</span></a>
                             	</li>
                             </ul>
                         </li>
                         <li>
-                            <a href="Root-function.aspx" title="no"><i class="fa fa-coffee fa-fw"></i> <span>功能管理</span></a>
+                            <a href="Root-function.aspx" class="no"><i class="fa fa-coffee fa-fw"></i> <span>功能管理</span></a>
                         </li>
                         <li>
                             <a href="#" class="parent"><i class="fa fa-sitemap fa-fw"></i> <span>设备管理</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse">
                                 <li>
-                                    <a href="#">Second Level Item</a>
+                                    <a href="Root-equipment.aspx" class="no"><span>设备管理</span></a>
                                 </li>
                                 <li>
                                     <a href="#">Second Level Item</a>

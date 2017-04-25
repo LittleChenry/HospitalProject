@@ -153,7 +153,7 @@ function checkElement(thisElement) {
             error.innerHTML = "设备名不能为空";
         } else if (thisElement.className.indexOf("OnceTreatment") > -1) {
             error.innerHTML = "请输入0-199的时间间隔(单位分钟)";
-        } else if (thisElement.className.indexOf("Time") > -1) {
+        } else if ((error.innerHTML == "") && thisElement.className.indexOf("Time") > -1) {
             error.innerHTML = "请输入正确的时间(格式 xx:xx)";
         } else if (thisElement.className.indexOf("treatItem") > -1) {
             error.innerHTML = "请选择隶属项目";
@@ -193,10 +193,50 @@ function checkClassName(name, thisElement) {
             }
             backString += name;
             break;
+        case "AMEnd":
+            if (isAllGood && !checkAfterTime(thisElement, "AMbeg")) {
+                backString += "invalid ";
+                if (thisElement.id = "AMEnd") {
+                    error.innerHTML = "上午结束时间必须在开始时间之后";
+                }
+                if (thisElement.id == "PMEnd") {
+                    error.innerHTML = "下午结束时间必须在开始时间之后";
+                }
+            }
+            backString += name;
+            break;
+        case "PMEnd":
+            if (isAllGood && !checkAfterTime(thisElement, "PMBeg")) {
+                backString += "invalid ";
+                if (thisElement.id = "AMEnd") {
+                    error.innerHTML = "上午结束时间必须在开始时间之后";
+                }
+                if (thisElement.id == "PMEnd") {
+                    error.innerHTML = "下午结束时间必须在开始时间之后";
+                }
+            }
+            backString += name;
+            break;
         default:
             backString += name;
     }
     return backString;
+}
+
+function checkAfterTime(thisElement,pre) {
+    var preTime = document.getElementById(pre).value;
+    var afterTime = thisElement.value;
+    var preHour = preTime.split(":")[0];
+    var preMin = preTime.split(":")[1];
+    var afterHour = afterTime.split(":")[0];
+    var afterMin = afterTime.split(":")[1];
+    if (preHour == afterHour) {
+        return (parseInt(preMin) < parseInt(afterMin));
+    } else if (parseInt(preHour) < parseInt(afterHour)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function checkOnceTime(thisElement) {
@@ -240,6 +280,21 @@ function checkTimes() {
     } else {
         error.innerHTML = "";
         removeClassName(this, "invalid");
+        if (this.id == "PMBeg" || this.id == "PMEnd") {
+            var time = this.value.split(":");
+            var hour = time[0];
+            if (parseInt(hour) < 12) {
+                hour = (parseInt(hour) + 12).toString();
+                this.value = hour + ":" + time[1];
+            }
+        }
+        if (this.id == "AMEnd" && !checkAfterTime(this, "AMbeg")) {
+            error.innerHTML = "上午结束时间必须在开始时间之后";
+            this.className += " invalid";
+        } else if (this.id == "PMEnd" && !checkAfterTime(this, "PMBeg")) {
+            error.innerHTML = "下午结束时间必须在开始时间之后";
+            this.className += " invalid";
+        }
     }
 }
 

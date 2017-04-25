@@ -50,7 +50,7 @@ function userLogout(evt) {
 }
 
 function createTag(evt) {
-    if (this.title != undefined && this.title == "yes") {
+    if (this.className != undefined && this.className == "yes") {
         changeToThisPage(this);
         if (evt && evt.preventDefault)
             //因此它支持W3C的stopPropagation()方法
@@ -59,8 +59,8 @@ function createTag(evt) {
             //否则，我们需要使用IE的方式来取消事件冒泡 
             window.event.cancelBubble = true;
         return false;
-    } else if (this.title != undefined && this.title == "no") {
-        this.title = "yes";
+    } else if (this.className != undefined && this.className == "no") {
+        this.className = "yes";
     }
     var iframe = createIframe(this.href);//创建iframe
     var thisUrl = this.href;
@@ -428,8 +428,8 @@ function closePage(e) {
             break;
         }
     }
-    if (currentLink.title != undefined && currentLink.title == "yes") {
-        currentLink.title = "no";
+    if (currentLink.className != undefined && currentLink.className == "yes") {
+        currentLink.className = "no";
     }
     var tag = this.parentNode;
     if (tag.className.indexOf("choosed") == -1) {
