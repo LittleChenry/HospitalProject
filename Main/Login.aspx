@@ -79,7 +79,7 @@
                     <div>
                         <label id="error"></label>
                     </div>
-                    <div id="chooseRole" class="login-panel panel panel-default" style="margin-top:210px;display:none;">
+                    <div id="chooseRole" class="login-panel panel panel-default" style="display:none;margin:auto;margin-top:210px;width:350px;">
                         <div class="panel-heading">
                             <h1 class="login-title">请选择登录角色</h1>
                         </div>
