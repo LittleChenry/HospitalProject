@@ -4,7 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+/* ***********************************************************
+ * FileName: Root-InfoManage.aspx.cs
+ * Writer: xubixiao
+ * create Date: 2017-4-2
+ * ReWriter:
+ * Rewrite Date:
+ * impact :
+ * 消息管理后台
+ * **********************************************************/
 public partial class Root_Root_InfoManage : System.Web.UI.Page
 {
     private DataLayer sqlOperation = new DataLayer("sqlStr");//数据库操作类

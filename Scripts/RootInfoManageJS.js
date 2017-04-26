@@ -1,4 +1,15 @@
-﻿window.addEventListener("load", createManageTable, false)
+﻿/* ***********************************************************
+ * FileName: RootInfoManageJS.js
+ * Writer: xubixiao
+ * create Date: 2017-4-15
+ * ReWriter:
+ * Rewrite Date:
+ * impact :
+ * 消息管理前端
+ * **********************************************************/
+
+
+window.addEventListener("load", createManageTable, false)
 var titleArea;
 var obj;
 var pageCurrent;
