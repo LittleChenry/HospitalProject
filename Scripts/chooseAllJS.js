@@ -19,10 +19,14 @@ function InitChooseAll() {
 }
 
 function chooseAll(evt) {
+    var allSelect = document.getElementsByName("role");
     if (this.checked == true) {
-        var allSelect = document.getElementsByName("role");
         for (var i = 0; i < allSelect.length; i++) {
             allSelect[i].checked = true;
+        }
+    } else {
+        for (var i = 0; i < allSelect.length; i++) {
+            allSelect[i].checked = false;
         }
     }
 }

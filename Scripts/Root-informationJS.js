@@ -135,7 +135,7 @@ function clearClassName(thisElement) {
 }
 
 function getSelectedRole() {
-    var allRoles = document.getElementById("hidePart").getElementsByTagName("INPUT");
+    var allRoles = document.getElementById("all-options").getElementsByTagName("INPUT");
     var strSelected = "";
     for (var i = 0; i < allRoles.length; i++) {
         if (allRoles[i].checked == true && allRoles[i].name == "role") {

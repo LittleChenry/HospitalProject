@@ -4891,7 +4891,7 @@ KEditor.prototype = {
 			editDiv = K('.edit', container),
 			statusbar = self.statusbar = K('.statusbar', container);
 		container.removeClass('container')
-			.addClass('ke-container ke-container-' + self.themeType).css('width', width);
+			.addClass('ke-container ke-container-' + self.themeType).css({width:width,margin:"auto"});
 		if (fullscreenMode) {
 			container.css({
 				position : 'absolute',

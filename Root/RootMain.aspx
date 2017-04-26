@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>root</title>
+    <title>放疗同质化平台</title>
     <!-- Main CSS -->
     <link href="../css/main.css" rel="stylesheet" />
 
@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span class="navbar-brand">医院管理系统</span>
+                <span class="navbar-brand">江苏省人民医院放疗同质化平台</span>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li id="current-date" class="dropdown"></li>

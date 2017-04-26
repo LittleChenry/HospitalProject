@@ -13,7 +13,8 @@
 	width: 1002px;
 	background-color: #FFFFFF;
     margin:0 auto;
-    padding-top:3%;
+    padding-top:5px;
+    padding-bottom:5px;
     font-size:large;
 }
 #head {
@@ -40,4 +41,8 @@ td.image {
     text-align:center;
     padding-top:1%;
     font-size:14px;
+}
+
+#describe {
+    margin-bottom:20px;
 }

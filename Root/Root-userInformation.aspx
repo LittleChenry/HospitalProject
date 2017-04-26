@@ -174,7 +174,7 @@
             <div class="col-lg-12" id="middleArea">
             </div>
 
-                <div class="col-lg-6 edit" id="topArea">
+                <div class="col-lg-12 edit" id="topArea">
                     <div class="table-responsive">
                         <form id="addNewFrm" action="Root-userInformation.aspx" method="post">
                             <input type="hidden" name="ispostback" value="true" />

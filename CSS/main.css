@@ -187,4 +187,14 @@
 
 .table-button {
     margin:0px 15px 0px 15px;
+    text-align: right;
+}
+.info-option {
+    padding-left:20px;
+}
+.option-title {
+    font-size:16px;
+}
+.options {
+    padding-left:10px;
 }

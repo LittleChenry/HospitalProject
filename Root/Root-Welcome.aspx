@@ -29,20 +29,19 @@
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="../CSS/Welcome.css" rel="stylesheet" type="text/css" />
 
-    <script src="../Scripts/NoticeJS.js" type="text/javascript"></script>
 </head>
 <body>
     <input id="type" type="hidden" value="Root" />
-    <div id="page-wrapper" style="border:0px;margin:0px; min-height: 923px;background:#f8f8f8;">
+    <div id="page-wrapper" style="border:0px;margin:0px; min-height: 723px;background:#f8f8f8;">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-12">
                 <h1 class="page-header">欢迎使用本系统</h1>
             </div>
-            <!-- /.col-lg-12 -->
+            <!-- /.col-md-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-md-4">
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <span class="module-title">消息模块</span>
@@ -57,8 +56,8 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col-lg-4 -->
-            <div class="col-lg-4">
+            <!-- /.col-md-4 -->
+            <div class="col-md-4">
                 <div class="panel panel-success">
                     <div class="panel-heading">
                         <span class="module-title">账号申请</span>
@@ -73,8 +72,8 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col-lg-4 -->
-            <div class="col-lg-4">
+            <!-- /.col-md-4 -->
+            <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <span class="module-title">设备状态</span>
@@ -89,11 +88,11 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col-lg-4 -->
+            <!-- /.col-md-4 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-md-4">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
                         <span class="module-title">科室工作</span>
@@ -108,8 +107,8 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col-lg-4 -->
-            <div class="col-lg-4">
+            <!-- /.col-md-4 -->
+            <div class="col-md-4">
                 <div class="panel panel-red">
                     <div class="panel-heading">
                         <span class="module-title">违规操作</span>
@@ -124,8 +123,8 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col-lg-4 -->
-            <div class="col-lg-4">
+            <!-- /.col-md-4 -->
+            <div class="col-md-4">
                 <div class="panel panel-green">
                     <div class="panel-heading">
                         <span class="module-title">操作指南</span>
@@ -140,11 +139,11 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col-lg-4 -->
+            <!-- /.col-md-4 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-md-4">
                 <div class="panel panel-yellow">
                     <div class="panel-heading">
                         <span class="module-title">友情链接</span>
@@ -159,7 +158,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col-lg-4 -->
+            <!-- /.col-md-4 -->
         </div>
         <!-- /.row -->
     </div>
