@@ -6,7 +6,7 @@
  * Rewrite Date:
  * impact :
  * Root-information中全选人员功能
- * ********************************************we**************/
+ * ************************************************************/
 
 window.addEventListener("load", InitChooseAll, false);
 

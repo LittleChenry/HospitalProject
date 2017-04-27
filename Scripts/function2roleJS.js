@@ -1,4 +1,14 @@
-﻿window.addEventListener("load", Init, false);
+﻿/* ***********************************************************
+ * FileName: function2role.js
+ * Writer: peach
+ * create Date: 2017-4-20
+ * ReWriter:
+ * Rewrite Date:
+ * impact :
+ * Root-function2role前端脚本
+ * ************************************************************/
+
+window.addEventListener("load", Init, false);
 
 var obj;
 var backString = "";
