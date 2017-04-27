@@ -1,0 +1,28 @@
+﻿div.targets{
+	margin:0px;
+    height: 40px;
+    font-size: 16px;
+    padding-left: 15px;
+    padding-right: 5px;
+	padding-top:10px;
+	color: #02481b;
+	background-color: #FFFFFF;
+	border-color: #000;
+	float: left;
+	border-width: 10px;
+}
+div.choosed{
+	background-color: #F8F8F8;
+}
+.tags {
+	height: 20px;
+    margin-left: 30px;
+}
+.tag-name {
+    padding-right:10px;
+}
+.self-close {
+    margin-top:-12px;
+    font-size:25px;
+    padding-right:5px;
+}
