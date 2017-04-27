@@ -17,6 +17,7 @@ var notice;
 var lastPageNumber;
 
 function createManageTable(evt) {
+    document.getElementById("refresh").addEventListener("click", Refresh, false);
     titleArea = document.getElementById("infomanagetable");
     getInformation();
     notice = obj.Notice;
@@ -35,6 +36,12 @@ function createManageTable(evt) {
     document.getElementById("previousPage").addEventListener('click', previousPageShow, false);
     document.getElementById("lastPage").addEventListener('click', lastPageShow, false);
 }
+
+function Refresh(evt) {
+    evt.preventDefault();
+    window.location = 'Root-InfoManage.aspx';
+}
+
 function firstPageShow(evt) {
     removeUlAllChild();
     release();

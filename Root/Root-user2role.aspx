@@ -38,6 +38,7 @@
         <div>
             <div class="col-lg-12">
                 <h1 class="page-header">角色绑定</h1>
+                <input type="button" value="刷新" id="refresh" />
             </div>
             <div class="col-lg-12 search">
                 <div class="col-lg-4">
@@ -66,8 +67,7 @@
             </div>
             <div class="col-lg-12">
 
-                <asp:GridView ID="user2roleGridView" runat="server" CssClass="informationTable" AllowPaging="True" PageSize="8" DataSourceID="user2roleObjectDataSource" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" >
-                    <AlternatingRowStyle BackColor="PaleGoldenrod" />
+                <asp:GridView ID="user2roleGridView" runat="server" CssClass="informationTable" AllowPaging="True" PageSize="8" DataSourceID="user2roleObjectDataSource" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderWidth="1px" CellPadding="3" BorderStyle="None" >
                     <PagerSettings Mode="NextPreviousFirstLast" NextPageText="下一页" PreviousPageText="上一页" FirstPageText="首页" LastPageText="末页" />
                     <Columns>
                         <asp:BoundField DataField="Number" HeaderText="账号" />
@@ -96,14 +96,15 @@
                         </asp:TemplateField>
                     </Columns>
 
-                    <FooterStyle BackColor="Tan" />
-                    <HeaderStyle BackColor="Tan" Font-Bold="True" CssClass="informationTh"/>
-                    <RowStyle CssClass="informationRow" />
-                    <SelectedRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
-                    <SortedAscendingCellStyle BackColor="#FAFAE7" />
-                    <SortedAscendingHeaderStyle BackColor="#DAC09E" />
-                    <SortedDescendingCellStyle BackColor="#E1DB9C" />
-                    <SortedDescendingHeaderStyle BackColor="#C2A47B" />
+                    <FooterStyle BackColor="White" ForeColor="#000066" />
+                    <HeaderStyle BackColor="#006699" Font-Bold="True" CssClass="informationTh" ForeColor="White"/>
+                    <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
+                    <RowStyle CssClass="informationRow" ForeColor="#000066" />
+                    <SelectedRowStyle BackColor="#669999" ForeColor="White" Font-Bold="True" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
+                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                    <SortedDescendingHeaderStyle BackColor="#00547E" />
                 </asp:GridView>
 
             </div>

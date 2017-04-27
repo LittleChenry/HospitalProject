@@ -39,6 +39,7 @@
         <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
         <div class="col-lg-12">
             <h1 class="page-header">设备管理</h1>
+            <input type="button" value="刷新" id="refresh" />
         </div>
         <div class="col-lg-12 search">
             <div class="col-lg-4">

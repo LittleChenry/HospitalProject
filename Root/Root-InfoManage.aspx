@@ -32,7 +32,6 @@
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
-    <script src="../Scripts/RootInfoManageJS.js" type="text/javascript"></script>
 </head>
 <body>
     <input id="type" type="hidden" value="Root" />
@@ -41,6 +40,7 @@
             <div class="col-lg-12">
                 <h1 class="page-header">消息管理</h1>
             </div>
+            <input type="button" value="刷新" id="refresh" />
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
@@ -80,6 +80,6 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
+    <script src="../Scripts/RootInfoManageJS.js" type="text/javascript"></script>
 </body>
 </html>

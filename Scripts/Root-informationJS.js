@@ -15,6 +15,12 @@ var isAllgood;
 function checkControl() {
     document.forms[0].addEventListener("submit", checkForm, false);
     document.getElementById("title").addEventListener("blur", checkTitle, false);
+    document.getElementById("refresh").addEventListener("click", Refresh, false);
+}
+
+function Refresh(evt) {
+    evt.preventDefault();
+    window.location = 'Root-information.aspx';
 }
 
 function checkForm(evt) {

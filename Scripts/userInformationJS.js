@@ -17,6 +17,12 @@ function Init() {
     document.getElementById("checkPassword").addEventListener("blur", checkRePswRight, false);//第二次密码输入框
     document.getElementById("addNewFrm").addEventListener("reset", resetForm, false);       //表单重置
     document.getElementById("cannel").addEventListener("click", cannel, false);
+    document.getElementById("refresh").addEventListener("click", Refresh, false);
+}
+
+function Refresh(evt) {
+    evt.preventDefault();
+    window.location = 'Root-userInformation.aspx';
 }
 
 function cannel(evt) {

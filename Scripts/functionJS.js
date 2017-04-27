@@ -9,6 +9,12 @@ function Init() {
     document.getElementById('addRoleFrm').addEventListener("reset", resetForm, false);
     document.getElementById('roleName').addEventListener("blur", checkReapt, false);
     document.getElementById("cannel").addEventListener("click", cannel, false);
+    document.getElementById("refresh").addEventListener("click", Refresh, false);
+}
+
+function Refresh(evt) {
+    evt.preventDefault();
+    window.location = 'Root-role.aspx';
 }
 
 function cannel(evt) {

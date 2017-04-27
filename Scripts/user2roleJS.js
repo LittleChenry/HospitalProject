@@ -15,7 +15,14 @@ function Init() {
     createRole();   //生成修改角色的多选框
     document.getElementById("chooseAll").addEventListener("click", chooseAll, false);       //全选按钮添加点击事件
     document.getElementById("bindFrm").addEventListener("submit", recordRole, false);       //修改角色的表单添加提交事件
+    document.getElementById("refresh").addEventListener("click", Refresh, false);
 }
+
+function Refresh(evt) {
+    evt.preventDefault();
+    window.location = 'Root-user2role.aspx';
+}
+
 //记录角色，保存在hidden里，方便后端查询。保存形式： "ROOT WLS YS "。
 function recordRole() {
     var hidden = document.getElementById("updateRoles");

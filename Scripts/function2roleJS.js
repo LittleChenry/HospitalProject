@@ -12,6 +12,12 @@ function Init() {
 
     document.getElementById("chooseAll").addEventListener("click", chooseAll, false);
     document.getElementById("bindFrm").addEventListener("submit", recordFunction, false);
+    document.getElementById("refresh").addEventListener("click", Refresh, false);
+}
+
+function Refresh(evt) {
+    evt.preventDefault();
+    window.location = 'Root-function2role.aspx';
 }
 
 function showBindArea(evt) {

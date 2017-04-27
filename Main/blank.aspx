@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Root-Welcome.aspx.cs" Inherits="Root_Root_Welcome" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="../Root/Root-Welcome.aspx.cs" Inherits="Root_Root_Welcome" %>
 
 <!DOCTYPE html>
 

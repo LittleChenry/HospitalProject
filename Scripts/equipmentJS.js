@@ -24,6 +24,12 @@ function Init() {
     }
     document.getElementById("onceTime").addEventListener("blur", checkOnceTreat, false);
     document.getElementById("insert").addEventListener("click", addEquipment, false);
+    document.getElementById("refresh").addEventListener("click", Refresh, false);
+}
+
+function Refresh(evt) {
+    evt.preventDefault();
+    window.location = 'Root-equipment.aspx';
 }
 
 //创建设备隶属治疗项目下拉菜单

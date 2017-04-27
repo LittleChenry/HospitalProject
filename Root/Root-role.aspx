@@ -27,6 +27,7 @@
 <body>
     <div class="col-lg-12">
         <h1 class="page-header">角色管理</h1>
+        <input type="button" value="刷新" id="refresh" />
     </div>
     <form id="frm" runat="server">
     <div class="col-lg-12">

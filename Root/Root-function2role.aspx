@@ -31,6 +31,7 @@
         <asp:ScriptManager ID="f2rScriptManager" runat="server"></asp:ScriptManager>
         <div class="col-lg-12">
             <h1 class="page-header">功能绑定</h1>
+            <input type="button" value="刷新" id="refresh" />
         </div>
         <div class="col-lg-12">
             <asp:GridView ID="f2rGridView" runat="server" AllowPaging="true" PageSize="8" CssClass="informationTable" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataSourceID="f2rObjectDataSource">
