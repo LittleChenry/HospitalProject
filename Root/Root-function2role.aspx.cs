@@ -31,6 +31,9 @@ public partial class Root_Root_function2role : System.Web.UI.Page
         string selectedFunction = Request.Form["updateFunctions"];
         string[] selectArray = selectedFunction.Split(' ');
         string roleID = Request.Form["RoleID"];
+        string deleteAll = "DELETE FROM function2role WHERE Role_ID=@id";
+        sqlOperation.AddParameterWithValue("@id", roleID);
+        sqlOperation.ExecuteNonQuery(deleteAll);
         string sqlCommand = "INSERT INTO function2role(Function_ID,Role_ID) VALUES(@fid,@rid)";
         sqlOperation.AddParameterWithValue("@rid", roleID);
         for (int i = 0; i < selectArray.Length; i++)

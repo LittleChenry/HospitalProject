@@ -147,7 +147,8 @@ function TransferMain() {
     var sel = document.getElementById("userRole");
     var index = sel.selectedIndex;
     var url = sel.options[index].value;
-    window.location.replace("../" + url + "/" + url + "Main.aspx");
+    var name = sel.options[index].innerHTML;
+    window.location.replace("../Main/RoleMain.aspx?role=" + name);
 }
 
 function postToCs() {

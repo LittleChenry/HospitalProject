@@ -1,16 +1,15 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="YSMain.aspx.cs" Inherits="YS_YSMain" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RoleMain.aspx.cs" Inherits="Main_RoleMain" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-
-    <meta charset="utf-8" />
+<head runat="server">
+<meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>root</title>
+    <title>放疗同质化平台</title>
     <!-- Main CSS -->
     <link href="../css/main.css" rel="stylesheet" />
 
@@ -28,8 +27,7 @@
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../CSS/YsMain.css" />
-    <script src="../Scripts/YsJS.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/rootMain.css" />
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -40,11 +38,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span class="navbar-brand">医院管理系统</span>
+                <span class="navbar-brand">江苏省人民医院放疗同质化平台</span>
             </div>
-            <!-- /.navbar-header -->
-
             <ul class="nav navbar-top-links navbar-right">
+                <li id="current-date" class="dropdown"></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -69,9 +66,7 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-messages -->
                 </li>
-                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -100,9 +95,7 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-tasks -->
                 </li>
-                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -124,9 +117,7 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-alerts -->
                 </li>
-                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -138,15 +129,12 @@
                         <li><a href="#" id="logout"><i class="fa fa-sign-out fa-fw"></i>退出登录</a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-user -->
                 </li>
-                <!-- /.dropdown -->
             </ul>
-            <!-- /.navbar-top-links -->
 
             <div id="menu" class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse collapse">
-                    <ul class="nav in" id="side-menu" style="margin-top:0px;">
+                    <ul class="frame-list nav in" id="side-menu" style="margin-top:0px;">
                     	<li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <div class="user-panel">
@@ -155,62 +143,15 @@
                                     </div>
                                     <div class="pull-left info">
                                       <p id="user-name"></p>
-                                      <p id="user-role">医师</p>
+                                      <p id="user-role"></p>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <a href="../Root/Root-information.aspx"><i class="fa fa-edit fa-fw"></i> <span>消息发布</span></a>
-                        </li>
-                        <li>
-                            <a href="#" class="parent"><i class="fa  fa-paste fa-fw"></i> <span>疗程管理</span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
-                                <li>
-                                    <a href="Ys-CheckTreatment.aspx" class="no"><i class="fa  fa-eye   fa-fw"></i><span>疗程查询</span></a>
-                                </li>
-                                <li>
-                                    <a href="Ys-RequireTreatment.aspx" class="no"><i class="fa   fa-cloud-upload    fa-fw"></i><span>疗程申请</span></a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                           <li>
-                            <a href="#" class="parent"><i class="fa fa-group fa-fw"></i> <span>我的任务</span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
-                                <li>
-                            <a href="Diagnose.aspx" class="no"><span>诊断病情</span></a>
-                        </li>
-                        <li>
-                            <a href="FixApply.aspx" class="no"> <span>体位固定申请</span></a>
-                        </li>
-                        <li>
-                            <a href="LocationApply.aspx" class="no"> <span>模拟定位申请</span></a>
-                        </li>
-                        <li>
-                            <a href="DiagnosePlanApply.aspx" class="no"><span>治疗计划申请</span></a>
-                        </li>
-                         <li>
-                            <a href="ReplacementApply.aspx" class="no"><span>复位申请</span></a>
-                        </li>
-                          <li>
-                            <a href="PDFConfirm.aspx" class="no"><span>PDF文件确认</span></a>
-                        </li>
-                      
-                         <li>
-                            <a href="TreatPlanConfirm.aspx" class="no"><span>治疗计划确认</span></a>
-                        </li>   
-                         <li>
-                            <a href="FollowUpRecord.aspx" class="no"><span>总结随访</span></a>
-                        </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        
                     </ul>
                 </div>
-                <!-- /.sidebar-collapse -->
             </div>
-            <!-- /.navbar-static-side -->
         </nav>
     <div id="page-wrapper" style="padding:0px;">
             <div id="targets" class="tags">
@@ -218,17 +159,18 @@
                     <p class="glyphicon glyphicon-backward"></p>
                 </a>
                 <div class="targets choosed right left" style="margin-left: 0px;">
-                    <span class="tag-name">主页</span>
-                    <input type="hidden" value="Ys-Welcome.aspx 0" />        
+                    <a href="javascript:;" class="tag-name" style="text-decoration:none;">主页</a>
+                    <input type="hidden" value="Root-Welcome.aspx 0" />
                 </div>
                 <a id="move-right" href="javascript:;">
                     <p class="glyphicon glyphicon-forward"></p>
                 </a>
             </div>
-        	<div id="iframeArea" class="self-frame panel-group">
-                <iframe name="urlYs-Welcome.aspx0" src="Ys-Welcome.aspx" style="width: 100%; height: 750px; border: 0px;"></iframe>
+        	<div id="iframeArea" class="self-frame panel-group" style="margin-bottom:0px;">
+                <iframe id="main-frame" name="urlRoot-Welcome.aspx0" src="../Root/Root-Welcome.aspx" style="width: 100%; min-height: 750px; border: 0px;"></iframe>
             </div>
     </div>
+    <script src="../Scripts/RoleMainJS.js" type="text/javascript"></script>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -240,6 +182,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
     <script src="../Scripts/jqOperate.js"></script>
 </body>
 </html>

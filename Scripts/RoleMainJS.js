@@ -1,13 +1,14 @@
 ﻿/* ***********************************************************
- * FileName: YSJS.js
- * Writer: xubixiao
- * create Date: 2017-4-27
- * ReWriter:xubixiao
- * Rewrite Date:2017-4-27
- * impact :医生操作主页面，如果动态生成请删除
+ * FileName: RoleMainJS.js
+ * Writer: peach
+ * create Date: 2017-4-28
+ * ReWriter:peach
+ * Rewrite Date:2017-4-28
+ * impact :
+ * 
  * **********************************************************/
-
 window.onresize = function () {
+    //alert("pagechanged!");
     var tabs = document.getElementsByClassName("targets");
     chooseLeftAndRight(tabs);
 
@@ -15,7 +16,19 @@ window.onresize = function () {
 
 window.addEventListener("load", Init, false);
 var addTagArea;
+var enterRole;
 var count;
+var obj = [];
+var currentdate = dateformate(new Date());
+document.getElementById("current-date").innerHTML = currentdate;
+var divHeight = windowHeight() - 45;
+document.getElementById("main-frame").style.minHeight = divHeight + "px";
+
+function windowHeight() {
+    var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+    height = height - 50;
+    return height;
+}
 
 function CreateMoveButton() {
     var moveLeft = document.getElementById("move-left");
@@ -25,6 +38,9 @@ function CreateMoveButton() {
 }
 
 function Init() {
+    confirmRole();
+    createNav();
+    getUserName();//获取登陆用户的名字
     addTagArea = document.getElementById("targets");
     var menu = document.getElementById("menu");
     var allLinks = menu.getElementsByTagName("A");//获取菜单栏所有导航链接节点
@@ -40,13 +56,163 @@ function Init() {
 
     document.getElementById('logout').addEventListener("click", userLogout, false);
 
-    getUserName();//获取登陆用户的名字
+    
+}
+
+function confirmRole() {
+    var role = window.location.search.split("=")[1];
+    var xmlHttp = new XMLHttpRequest();
+    var url = "getRoleName.ashx?role=" + role;
+    xmlHttp.open("GET", url, false);
+    xmlHttp.send();
+    var backString = xmlHttp.responseText;
+    enterRole = backString.split(" ")[1];
+    document.getElementById("user-role").innerHTML = backString.split(" ")[0];
+    document.getElementById("main-frame").src = "../" + enterRole + "/" + enterRole + "-Welcome.aspx";
+}
+
+function createNav() {
+    getNav();
+    for (var i = 0; i < obj.length; i++) {
+        var name = obj[i].Name;
+        if (name == "false") {
+            return;
+        }
+        var node = obj[i].Node;
+        var parent = obj[i].Parent;
+        if (node != "0") {
+            CreateParent(parent, obj[i]);
+        } else {
+            createAFirstNav(obj[i].ID, obj[i], true);
+        }
+    }
+}
+
+//param:navID父节点的id,param:json:自身json对象
+function CreateParent(navID, json) {
+    var navArea = document.getElementById("side-menu");
+    if (document.getElementById("parent" + navID) == null || document.getElementById("parent" + navID) == undefined) {
+        var parent = getParent(navID);
+        if (parent[0].Node == "0") {
+            createAFirstNav(navID, parent[0], false);
+            createASecondNav(json, "parent" + navID);
+        } 
+    } else {
+        createASecondNav(json, "parent" + navID);
+    }
+}
+
+function createAFirstNav(navID, json, isSelf) {
+    var navArea = document.getElementById("side-menu");
+    var name = json.Name;
+    var url = json.Url;
+    var Icon = json.Icon;
+    var State = json.State;
+    var a = document.createElement("A");
+    a.href = url;
+    a.className = "parent";
+    if (isSelf) {
+        a.addEventListener("click", createTag, false);
+    }
+    var i = document.createElement("I");
+    i.className = Icon;
+    var textNode = document.createTextNode(name);
+    var nameSpan = document.createElement("SPAN");
+    nameSpan.appendChild(textNode);
+    if (!isSelf) {
+        var span = document.createElement("SPAN");
+        span.className = "fa arrow";
+    }
+    a.appendChild(i);
+    a.appendChild(nameSpan);
+    a.addEventListener("click", showChild, false);//展示孩子
+    if (isSelf && name != "消息发布") {
+        a.className = "no";
+    }
+    if(!isSelf){
+        a.appendChild(span);
+    }
+    var li = document.createElement("LI");
+    li.appendChild(a);
+    if (!isSelf && json.Node == 0) {
+        var ul = document.createElement("UL");   
+        ul.className = "second-ul nav nav-second-level collapse";
+        ul.id = "parent" + navID;
+        li.appendChild(ul);
+    }
+    navArea.appendChild(li);
+}
+
+//创建二级导航节点
+function createASecondNav(json,id) {
+    var name = json.Name;
+    var url = json.Url;
+    var Icon = json.Icon;
+    var State = json.State;
+    var a = document.createElement("A");
+    a.href = url;
+    a.addEventListener("click", createTag, false);
+    var textNode = document.createTextNode(name);
+    var span = document.createElement("SPAN");
+    span.appendChild(textNode);
+    a.appendChild(span);
+    if (name != "消息发布") {
+        a.className = "no";
+    }
+    var li = document.createElement("LI");
+    li.appendChild(a);
+    document.getElementById(id).appendChild(li);
+}
+
+//根据parent节点id获取parent节点具体信息
+function getParent(navID) {
+    var xmlHttp = new XMLHttpRequest();
+    var url = "../Main/getParentNode.ashx?id=" + navID;
+    xmlHttp.open("GET", url, false);
+    xmlHttp.send();
+    var json = xmlHttp.responseText;
+    var parent = eval("(" + json + ")");
+    return parent;
+}
+
+function getNav() {
+    var xmlHttp = new XMLHttpRequest();
+    var url = "../Main/getNavigation.ashx?role=" + enterRole;
+    xmlHttp.open("GET", url, false)
+    xmlHttp.send();
+    var json = xmlHttp.responseText;
+    obj = eval("(" + json + ")");
 }
 
 function userLogout(evt) {
     window.location.replace("../Main/Login.aspx");
     evt.preventDefault();
 }
+
+function showChild(evt) {
+    evt.preventDefault();
+    var ul = this.parentNode.getElementsByTagName("UL")[0];
+    var style = ul.currentStyle != undefined ? ul.currentStyle.display : window.getComputedStyle(ul, null).display;
+    if (style != "none") {
+        ul.style.display = "none";
+    } else {
+        var area = document.getElementById("side-menu");
+        var allUl = area.getElementsByTagName("UL");
+        for (var i = 0; i < allUl.length; i++) {
+            allUl[i].style.display = "none";
+        }
+        ul.style.display = "block";
+    }   
+}
+
+function dateformate(date) {
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? '0' + m : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    return y + '年' + m + '月' + d + '日';
+};
 
 function createTag(evt) {
     if (this.className != undefined && this.className == "yes") {
@@ -65,8 +231,10 @@ function createTag(evt) {
     var thisUrl = this.href;
     var name = this.getElementsByTagName("SPAN")[0].innerHTML;//获取导航名作为标签页名
     var title = document.createTextNode(name);
-    var textNode = document.createElement("SPAN");
+    var textNode = document.createElement("a");
+    textNode.href = "javascript:;";
     textNode.className = "tag-name";
+    textNode.style = "text-decoration:none;";
     textNode.appendChild(title);
     var buttonNode = createButton(this);//创建关闭标签页按钮节点
     buttonNode.addEventListener("click", closePage, false);
@@ -109,7 +277,7 @@ function changeToThisPage(link) {
             removeChoosed(allTags[i]);
         }
     }
-    var span = addTagArea.getElementsByTagName("SPAN");
+    var span = addTagArea.getElementsByTagName("a");
     for (var i = 0; i < span.length; i++) {
         if (span[i].innerHTML == link.getElementsByTagName("SPAN")[0].innerHTML) {
             span[i].parentNode.className += " choosed";
@@ -328,9 +496,10 @@ function createIframe(url) {
         if (currentIframe[i].name == "ifm" + url + count)
             count++;
     }
+    var divHeight = document.getElementById("page-wrapper").offsetHeight - 40;
     iframe.name = "ifm" + url + count;
     iframe.style.width = "100%";
-    iframe.style.height = "950px";
+    iframe.style.minHeight = divHeight + "px";
     iframe.style.border = "0px";
     iframeArea.appendChild(iframe);
     return iframe;
@@ -515,7 +684,7 @@ function clearIframe(thisNode) {
 
 function getUserName() {
     var xmlHttp = new XMLHttpRequest();
-    var url = "../Root/GetUserName.ashx";
+    var url = "GetUserName.ashx";
     xmlHttp.open("GET", url, true);
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4) {//正常响应
