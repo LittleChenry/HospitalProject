@@ -55,7 +55,6 @@ function Init() {
     }
 
     document.getElementById('logout').addEventListener("click", userLogout, false);
-
     
 }
 

@@ -239,6 +239,7 @@ public class DataLayer
         {
             _sqlCommand.Connection = _sqlConnect;
         }
+
         string strResult = _sqlCommand.ExecuteScalar().ToString();
         this.Close();
         return strResult;

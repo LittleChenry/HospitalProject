@@ -194,7 +194,11 @@
                     <tr>
                         <th class="noborder"><label for="changeTreatmentItem" class="height">隶属项目</label></th>
                         <td>
-                            <select id="changeTreatmentItem" name="changeTreatmentItem" class="form-control treatItem">                
+                            <select id="changeTreatmentItem" name="changeTreatmentItem" class="form-control treatItem">
+                                <option value="allItem">隶属项目</option>
+                                <option value="体位固定">体位固定</option>    
+                                <option value="模拟定位">模拟定位</option> 
+                                <option value="加速器治疗">加速器治疗</option>            
                             </select>
                         </td>
                     </tr>

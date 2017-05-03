@@ -127,7 +127,7 @@ public partial class Root_Root_equipment : System.Web.UI.Page
             for (int k = 0; k < PMFrequency; k++)
             {
                 int Pbegin = intPMBeg + (k * int.Parse(OnceTime));
-                int PEnd = intPMEnd + (k * int.Parse(OnceTime));
+                int PEnd = Pbegin + int.Parse(OnceTime);
                 sqlOperation.AddParameterWithValue("@begin", Pbegin);
                 sqlOperation.AddParameterWithValue("@end", PEnd);
                 sqlOperation.ExecuteNonQuery(sqlCommand);

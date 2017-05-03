@@ -8,7 +8,7 @@ function Init() {
     var ItemSelect = document.getElementById("TreatmentItem");
     var changeItem = document.getElementById("changeTreatmentItem");
     createItemSelect(ItemSelect);//创建设备隶属治疗项目下拉菜单
-    createItemSelect(changeItem);
+    //createItemSelect(changeItem);
     var allLink = document.getElementsByClassName("selectedUpdate");
     for (var i = 0; i < allLink.length; i++) {
         allLink[i].addEventListener("click", EditEquipment, false);
