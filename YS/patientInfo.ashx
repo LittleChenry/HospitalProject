@@ -3,7 +3,15 @@
 using System;
 using System.Web;
 using System.Text;
-
+/* ***********************************************************
+ * FileName:patientInfo.ashx
+ * Writer: xubxiao
+ * create Date: 2017-5-4
+ * ReWriter:
+ * Rewrite Date:
+ * impact :
+ * 等待就诊的疗程号以及患者基本信息获取
+ * **********************************************************/
 public class patientInfo : IHttpHandler {
      private DataLayer sqlOperation = new DataLayer("sqlStr");
     public void ProcessRequest (HttpContext context) {
@@ -26,14 +34,13 @@ public class patientInfo : IHttpHandler {
     }
     private string getPatientInfo(HttpContext context)
     {
-        String id = context.Request.QueryString["id"];
         String name = context.Request.QueryString["name"];
-        if (id=="all")
+        if (name=="all")
         {   int i=1;
-            string countCompute="SELECT COUNT(*) FROM patient";
+        string countCompute = "select count(treatment.ID) from treatment,patient where patient.ID=treatment.Patient_ID and treatment.DiagnosisRecord_ID is NULL";
             int count = int.Parse(sqlOperation.ExecuteScalar(countCompute));
-            
-            string sqlCommand = "SELECT * FROM patient";
+
+            string sqlCommand = "select treatment.ID as treatid,patient.* from treatment,patient where patient.ID=treatment.Patient_ID and treatment.DiagnosisRecord_ID is NULL";
             MySql.Data.MySqlClient.MySqlDataReader reader = sqlOperation.ExecuteReader(sqlCommand);
             StringBuilder backText = new StringBuilder("{\"patientGroup\":[");
             while (reader.Read())
@@ -42,7 +49,7 @@ public class patientInfo : IHttpHandler {
                      "\",\"Hospital\":\"" + reader["Hospital"].ToString() + "\",\"RecordNumber\":\"" + reader["RecordNumber"].ToString() + "\",\"Picture\":\"" + reader["Picture"].ToString() + "\",\"Name\":\"" + reader["Name"].ToString() +
                      "\",\"Gender\":\"" + reader["Gender"].ToString() + "\",\"Age\":\"" + reader["Age"].ToString() + "\",\"Birthday\":\"" + reader["Birthday"].ToString() +
                      "\",\"Nation\":\"" + reader["Nation"].ToString() + "\",\"Address\":\"" + reader["Address"].ToString() + "\",\"Contact1\":\"" + reader["Contact1"].ToString() +
-                     "\",\"Contact2\":\"" + reader["Contact2"].ToString() + "\",\"Height\":\"" + reader["Height"].ToString() + "\",\"Weight\":\"" + reader["Weight"].ToString() + "\"}");
+                     "\",\"Contact2\":\"" + reader["Contact2"].ToString() + "\",\"Height\":\"" + reader["Height"].ToString() + "\",\"Weight\":\"" + reader["Weight"].ToString() + "\",\"treatID\":\"" + reader["treatid"].ToString()+"\"}");
                 if (i < count)
                 {
                     backText.Append(",");
@@ -56,11 +63,11 @@ public class patientInfo : IHttpHandler {
         {   
             
             int i = 1;
-            string countCompute = "SELECT COUNT(*) FROM patient";
+            string countCompute = "select count(treatment.ID) from treatment,patient where patient.ID=treatment.Patient_ID and treatment.DiagnosisRecord_ID is NULL and patient.Name LIKE @name";
+            sqlOperation.AddParameterWithValue("@name", "%" + name + "%");
             int count = int.Parse(sqlOperation.ExecuteScalar(countCompute));
-            string sqlCommand = "SELECT ID,IdentificationNumber,Hospital,RecordNumber,Picture,Name,Gender,Age,Birthday,Nation,Address,Contact1,Contact2,Height,Weight FROM patient WHERE ID=@id OR Name=@name";
-            sqlOperation.AddParameterWithValue("@id", id);
-            sqlOperation.AddParameterWithValue("@name", name);
+            string sqlCommand = "select treatment.ID as treatid,patient.* from treatment,patient where patient.ID=treatment.Patient_ID and treatment.DiagnosisRecord_ID is NULL and patient.Name LIKE @name";
+            sqlOperation.AddParameterWithValue("@name", "%"+name+"%");
             MySql.Data.MySqlClient.MySqlDataReader reader = sqlOperation.ExecuteReader(sqlCommand);
             StringBuilder backText = new StringBuilder("{\"patientGroup\":[");
             
@@ -70,7 +77,7 @@ public class patientInfo : IHttpHandler {
                      "\",\"Hospital\":\"" + reader["Hospital"].ToString() + "\",\"RecordNumber\":\"" + reader["RecordNumber"].ToString() + "\",\"Picture\":\"" + reader["Picture"].ToString() + "\",\"Name\":\"" + reader["Name"].ToString() +
                      "\",\"Gender\":\"" + reader["Gender"].ToString() + "\",\"Age\":\"" + reader["Age"].ToString() + "\",\"Birthday\":\"" + reader["Birthday"].ToString() +
                      "\",\"Nation\":\"" + reader["Nation"].ToString() + "\",\"Address\":\"" + reader["Address"].ToString() + "\",\"Contact1\":\"" + reader["Contact1"].ToString() +
-                     "\",\"Contact2\":\"" + reader["Contact2"].ToString() + "\",\"Height\":\"" + reader["Height"].ToString() + "\",\"Weight\":\"" + reader["Weight"].ToString() + "\"}");
+                     "\",\"Contact2\":\"" + reader["Contact2"].ToString() + "\",\"Height\":\"" + reader["Height"].ToString() + "\",\"Weight\":\"" + reader["Weight"].ToString() + "\",\"treatID\":\"" + reader["treatid"].ToString() + "\"}");
                 if (i < count)
                 {
                     backText.Append(",");

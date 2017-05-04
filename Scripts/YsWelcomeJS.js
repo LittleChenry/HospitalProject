@@ -122,8 +122,7 @@ function createTitle(notice) {
     var title = notice.Title;
     var time = notice.Time;
     var ID = notice.ID;
-    var hot = notice.Hot;
-    var New = notice.New;
+
 
     var spanbadage = document.createElement("SPAN");
     var textNodeNew = document.createTextNode("NEW");
@@ -131,10 +130,7 @@ function createTitle(notice) {
     spanbadage.appendChild(textNodeNew);
 
 
-    var spanbadage2 = document.createElement("SPAN");
-    var textNodeNew2 = document.createTextNode("HOT");
-    spanbadage2.className = "label label-warning";
-    spanbadage2.appendChild(textNodeNew2);
+  
 
 
     var textNode = document.createTextNode(title);
@@ -156,14 +152,18 @@ function createTitle(notice) {
     linkContentNode.value = ID;
     var li = document.createElement("LI");
     li.appendChild(Span);
-
+    var Year = new String(new Date().getFullYear());
+    var Day = new String(new Date().getDay());
+    var Month = new String(new Date().getMonth() + 1);
+    var Now = Year + "-" + Month + "-" + Day;
     li.appendChild(linkNode);
-    if (parseInt(New) == 1) {
+    if (time == Now) {
         li.appendChild(spanbadage);
     }
-    if (parseInt(hot) == 1) {
-        li.appendChild(spanbadage2);
-    }
+   
+
+
+
     li.appendChild(hr);
     li.appendChild(linkContentNode);
     titleArea.appendChild(li);

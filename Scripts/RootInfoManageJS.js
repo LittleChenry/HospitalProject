@@ -2,8 +2,8 @@
  * FileName: RootInfoManageJS.js
  * Writer: xubixiao
  * create Date: 2017-4-15
- * ReWriter:
- * Rewrite Date:
+ * ReWriter:xubixiao
+ * Rewrite Date:2017-5-1
  * impact :
  * 消息管理前端
  * **********************************************************/
@@ -131,8 +131,7 @@ function createTable(notice) {
         var title = notice.Title;
         var time = notice.Time;
         var ID = notice.ID;
-        var hot = notice.Hot;
-        var New = notice.New;
+        var imp = notice.Important;
         var textNode = document.createTextNode(title);
 
 
@@ -140,14 +139,6 @@ function createTable(notice) {
         var textNodeNew = document.createTextNode("NEW");
         spanbadage.className = "label label-danger";
         spanbadage.appendChild(textNodeNew);
-
-
-        var spanbadage2 = document.createElement("SPAN");
-        var textNodeNew2 = document.createTextNode("HOT");
-        spanbadage2.className = "label label-warning";
-        spanbadage2.appendChild(textNodeNew2);
-
-
         var h5 = document.createElement("H5");
         h5.appendChild(textNode);
         var linkNode = document.createElement("A");
@@ -159,100 +150,67 @@ function createTable(notice) {
         Span.appendChild(timeNode);
         var tdNode1 = document.createElement("TD");
         tdNode1.appendChild(linkNode);
-        if (parseInt(New)== 1) {
+        var Year = new String(new Date().getFullYear());
+        var Day =  new String(new Date().getDay());
+        var Month = new String(new Date().getMonth()+1);
+        var Now = Year + "-"+Month +"-"+Day;
+        if (time==Now) {
             tdNode1.appendChild(spanbadage);
-        }
-        if (parseInt(hot)== 1) {
-            tdNode1.appendChild(spanbadage2);
         }
         var tdNode2 = document.createElement("TD");
         tdNode2.appendChild(timeNode);
 
     
         var tdNode3 = document.createElement("TD");
-        var textNode1 = document.createTextNode("删除");
-        var h = document.createElement("H5");
-        h.appendChild(textNode1);
-        var linkNode1 = document.createElement("A");
-        linkNode1.href = "../Root/Root-InfoManage.aspx?ID=" + ID + "&Type=0";
-        linkNode1.style.width = "100%"
-        linkNode1.target = "_self";
-        linkNode1.appendChild(h);
-        tdNode3.appendChild(linkNode1);
+        var textNode0 = document.createTextNode("删除");
+        var button0 = document.createElement("BUTTON");
+        button0.className = "btn btn-primary btn-sm ";
+        var linkNode0 = document.createElement("A");
+        linkNode0.href = "../Root/Root-InfoManage.aspx?ID=" + ID + "&Type=0";
+        linkNode0.style.cssFloat = "left";
+        linkNode0.target = "_self";
+        linkNode0.style = "color:white";
+        linkNode0.appendChild(textNode0);
+        button0.appendChild(linkNode0)
+        tdNode3.appendChild(button0);
     
         var tdNode4 = document.createElement("TD");
         var textNode1 = document.createTextNode("置顶");
-        var h = document.createElement("H5");
-        h.appendChild(textNode1);
+        var button1 = document.createElement("BUTTON");
+        if (parseInt(imp) == 1) {
+            button1.disabled = "true";
+        }
+        button1.className = "btn btn-primary btn-sm ";
         var linkNode1 = document.createElement("A");
         linkNode1.href = "../Root/Root-InfoManage.aspx?ID=" + ID + "&Type=1";
         linkNode1.style.cssFloat = "left";
         linkNode1.target = "_self";
-        linkNode1.appendChild(h);
+        linkNode1.style = "color:white";
+        linkNode1.appendChild(textNode1);
+        button1.appendChild(linkNode1)
         var textNode2 = document.createTextNode("取消置顶");
-        var h1 = document.createElement("H5");
-        h1.appendChild(textNode2);
+        var button2 = document.createElement("BUTTON");
+        if (parseInt(imp) == 0) {
+            button2.disabled = "true";
+        }
+        button2.className = "btn btn-primary btn-sm ";
+        button2.style.cssFloat = "right";
         var linkNode2 = document.createElement("A");
         linkNode2.href = "../Root/Root-InfoManage.aspx?ID=" + ID + "&Type=10";
         linkNode2.style.cssFloat = "right"
         linkNode2.target = "_self";
-        linkNode2.appendChild(h1);
-        tdNode4.appendChild(linkNode1);
-        tdNode4.appendChild(linkNode2);
- 
-
-        var tdNode5 = document.createElement("TD");
-        var textNode1 = document.createTextNode("置新");
-        var h = document.createElement("H5");
-        h.appendChild(textNode1);
-        var linkNode1 = document.createElement("A");
-        linkNode1.href = "../Root/Root-InfoManage.aspx?ID=" + ID + "&Type=2" ;
-        linkNode1.style.cssFloat= "left"
-        linkNode1.target = "_self";
-        linkNode1.appendChild(h);
-        var textNode2 = document.createTextNode("取消置新");
-        var h1 = document.createElement("H5");
-        h1.appendChild(textNode2);
-        var linkNode2 = document.createElement("A");
-        linkNode2.href = "../Root/Root-InfoManage.aspx?ID=" + ID + "&Type=20";
-        linkNode2.style.cssFloat = "right"
-        linkNode2.target = "_self";
-        linkNode2.appendChild(h1);
-        tdNode5.appendChild(linkNode1);
-        tdNode5.appendChild(linkNode2);
-  
-
-
-        var tdNode6 = document.createElement("TD");
-        var textNode1 = document.createTextNode("置热");
-        var h = document.createElement("H5");
-        h.appendChild(textNode1);
-        var linkNode1 = document.createElement("A");
-        linkNode1.href = "../Root/Root-InfoManage.aspx?ID=" + ID + "&Type=3";
-        linkNode1.style.cssFloat= "left"
-        linkNode1.target = "_self";
-        linkNode1.appendChild(h);
-        var textNode2 = document.createTextNode("取消置热");
-        var h1 = document.createElement("H5");
-        h1.appendChild(textNode2);
-        var linkNode2 = document.createElement("A");
-        linkNode2.href = "../Root/Root-InfoManage.aspx?ID=" + ID + "&Type=30";
-        linkNode2.style.cssFloat = "right"
-        linkNode2.target = "_self";
-        linkNode2.appendChild(h1);
-        tdNode6.appendChild(linkNode1);
-        tdNode6.appendChild(linkNode2);
-
-  
-    
+        linkNode2.style = "color:white";
+        linkNode2.appendChild(textNode2);
+        button2.appendChild(linkNode2)
+        tdNode4.appendChild(button1);
+        tdNode4.appendChild(button2);
+   
         var trNode = document.createElement("TR");
         trNode.appendChild(tdNode1);
         trNode.appendChild(tdNode2);
         trNode.appendChild(tdNode3);
         trNode.appendChild(tdNode4);
-        trNode.appendChild(tdNode5);
-        trNode.appendChild(tdNode6);
-  
+        
   
         titleArea.appendChild(trNode);
 

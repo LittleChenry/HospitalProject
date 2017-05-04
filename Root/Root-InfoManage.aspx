@@ -49,13 +49,11 @@
                 <div class="panel-body">
                     <table class="table table-striped table-bordered table-hover" >
                         <thead>
-                            <tr>
-                                <th style="width:35%">消息标题</th>
-                                <th style="width:10%">消息发布时间</th>
-                                <th style="width:10%">删除处理</th>
+                            <tr style="background-color:#2b2b87;color:white">
+                                <th style="width:55%">消息标题</th>
+                                <th style="width:15%">消息发布时间</th>
+                                <th style="width:15%">删除处理</th>
                                 <th style="width:15%">置顶处理</th>
-                                <th style="width:15%">置新处理</th>
-                                <th style="width:15%">置热处理</th>
                             </tr>
                         </thead>
                         <tbody id="infomanagetable"></tbody>

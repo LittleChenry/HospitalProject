@@ -28,7 +28,7 @@ public class Notice : IHttpHandler {
     private string getTitle(HttpContext context)
     {
         string type = "%" + context.Request.QueryString["Type"] + "%";
-        string sqlCommand = "SELECT ID,Title,Releasetime,Hot,New FROM news WHERE Permission like(@type) order by Important desc, Releasetime desc";
+        string sqlCommand = "SELECT ID,Title,Releasetime,Important FROM news WHERE Permission like(@type) order by Important desc, Releasetime desc";
         string countNotice = "SELECT count(ID) FROM news WHERE Permission like(@type)";
         sqlOperation.AddParameterWithValue("@type", type);
         int count = int.Parse(sqlOperation.ExecuteScalar(countNotice));
@@ -46,7 +46,7 @@ public class Notice : IHttpHandler {
             /*backText += "\"Title\":\"" + reader["Title"].ToString() + "\",\"Time\":\"" + reader["Releasetime"].ToString()
                 + "\",\"ID\":\"" + reader["ID"].ToString() + "\"}";*/
             backText.Append("{\"Title\":\"" + reader["Title"].ToString() + "\",\"Time\":\"" + day
-                + "\",\"ID\":\"" + reader["ID"].ToString() + "\",\"Hot\":\"" + reader["Hot"].ToString()+"\",\"New\":\"" + reader["New"].ToString()+"\"}");
+                + "\",\"ID\":\"" + reader["ID"].ToString() + "\",\"Important\":\"" + reader["Important"].ToString() + "\"}");
             if (i < count)
             {
                 //backText += ",";

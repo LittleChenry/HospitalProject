@@ -26,11 +26,7 @@ public partial class Root_Root_InfoManage : System.Web.UI.Page
          {
              case 0: delete(id); break;
              case 1: setTop(id); break;
-             case 2: setNew(id); break;
-             case 3: setHot(id); break;
              case 10: removeTop(id); break;
-             case 20: removeNew(id);break;
-             case 30: removeHot(id); break;
              default: break;
          }
          if (Session["loginUser"] == null)
@@ -61,34 +57,5 @@ public partial class Root_Root_InfoManage : System.Web.UI.Page
         sqlOperation.AddParameterWithValue("@id", id);
         sqlOperation.ExecuteNonQuery(sqlCommand);
     }
-    public void setNew(String id)
-    {
-        sqlOperation.clearParameter();
-        string sqlCommand = "UPDATE news SET New=1 WHERE ID=@id";
-        sqlOperation.AddParameterWithValue("@id", id);
-        sqlOperation.ExecuteNonQuery(sqlCommand);
-    }
-    public void removeNew(String id)
-    {
-
-        sqlOperation.clearParameter();
-        string sqlCommand = "UPDATE news SET New=0 WHERE ID=@id";
-        sqlOperation.AddParameterWithValue("@id", id);
-        sqlOperation.ExecuteNonQuery(sqlCommand);
-    }
-    public void setHot(String id)
-    {
-        sqlOperation.clearParameter();
-        string sqlCommand = "UPDATE news SET Hot=1 WHERE ID=@id";
-        sqlOperation.AddParameterWithValue("@id", id);
-        sqlOperation.ExecuteNonQuery(sqlCommand);
-    }
-    public void removeHot(String id)
-    {
-        sqlOperation.clearParameter();
-        string sqlCommand = "UPDATE news SET Hot=0 WHERE ID=@id";
-        sqlOperation.AddParameterWithValue("@id", id);
-        sqlOperation.ExecuteNonQuery(sqlCommand);
-    }
-
+ 
 }
