@@ -549,7 +549,7 @@ function createPatientShow(patient) {
         button.className = "btn btn-primary btn-xs";
         button.style.color = "white";
         button.addEventListener("click", function () { askForDiagnose(patient) }, false);
-        var textnode4 = document.createTextNode("进行诊断");
+        var textnode4 = document.createTextNode("进行体位固定申请");
         button.appendChild(textnode4);
         tdnode4.appendChild(button);
         trnode1.appendChild(tdnode1);
