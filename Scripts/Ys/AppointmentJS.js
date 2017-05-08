@@ -596,7 +596,7 @@ function showApply(patient, page) {
         div.style.display = "block";
         var time = new Date();
         document.getElementById("treatID").value = patient.treatID;
-        document.getElementById("time").value = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDay();
+        document.getElementById("time").value = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate();
         document.getElementById("applyuser").value = userName;
         var select1 = document.getElementById("modelselect");
         createmodelselectItem(select1);
