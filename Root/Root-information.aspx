@@ -93,6 +93,9 @@
                                     <li>
                                         <label><input type="checkbox" name="role" value="YS" /><span>医师</span></label>
                                     </li>
+                                     <li>
+                                        <label><input type="checkbox" name="role" value="MNJS" /><span>模拟技师</span></label>
+                                    </li>
                                     <li>
                                         <label><input type="checkbox" name="role" value="WLS" /><span>物理师</span></label>
                                     </li>
