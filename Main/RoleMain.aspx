@@ -167,7 +167,7 @@
                 </a>
             </div>
         	<div id="iframeArea" class="self-frame panel-group" style="margin-bottom:0px;">
-                <iframe id="main-frame" name="urlRoot-Welcome.aspx0" src="../Root/Root-Welcome.aspx" style="width: 100%; min-height: 750px; border: 0px;"></iframe>
+                <iframe id="main-frame" name="urlRoot-Welcome.aspx0" style="width: 100%; min-height: 750px; border: 0px;"></iframe>
             </div>
     </div>
     <script src="../Scripts/RoleMainJS.js" type="text/javascript"></script>

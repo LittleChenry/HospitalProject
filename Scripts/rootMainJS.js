@@ -152,49 +152,72 @@ function chooseLeftAndRight(tabs) {
     var rightIndex = oldTabs[1];
     var choosedIndex = oldTabs[2];
     var flag = 0;
-    //alert(leftIndex + "" + choosedIndex + "" + rightIndex);
-    for (var i = leftIndex; i < tabs.length; i++) {
-        if (flag == 1) {
+
+    rightIndex = choosedIndex;
+    for (var i = choosedIndex; i >= 0; i--) {
+        totalLength += tabs[i].offsetWidth;
+        if (totalLength < tabsMax) {
+            leftIndex = i;
+        } else {
             break;
         }
-        totalLength += tabs[i].offsetWidth;
-        if (totalLength > tabsMax) {
-            if (i - 1 < choosedIndex) {
-                rightIndex = choosedIndex;
-                tempLength = 0;
-                for (var j = choosedIndex; j > 0; j--) {
-                    tempLength += tabs[j].offsetWidth;
-                    if (tempLength > tabsMax) {
-                        leftIndex = j + 1;
-                        flag = 1;
-                        break;
-                    } else {
-                        leftIndex = j;
-                    }
-                }
-                flag = 1;
-                break;
-            } else {
-                rightIndex = i - 1;
-                tempLength = 0;
-                for (var j = rightIndex; j > 0; j--) {
-                    tempLength += tabs[j].offsetWidth;
-                    if (tempLength > tabsMax) {
-                        leftIndex = j + 1;
-                        flag = 1;
-                        break;
-                    } else {
-                        leftIndex = j;
-                    }
-                }
-            }
+    }
+    for (var j = choosedIndex + 1; j < tabs.length; j++) {
+        totalLength += tabs[j].offsetWidth;
+        if (totalLength < tabsMax) {
+            rightIndex = j;
         } else {
-            rightIndex = choosedIndex;
+            break;
         }
     }
     tabs[leftIndex].className += " left";
     tabs[rightIndex].className += " right";
     adjustLeftAndRight(leftIndex, rightIndex, tabs);
+
+
+    //alert(leftIndex + "" + choosedIndex + "" + rightIndex);
+    //for (var i = leftIndex; i < tabs.length; i++) {
+    //    if (flag == 1) {
+    //        break;
+    //    }
+    //    totalLength += tabs[i].offsetWidth;
+    //    if (totalLength > tabsMax) {
+    //        if (i - 1 < choosedIndex) {
+    //            rightIndex = choosedIndex;
+    //            tempLength = 0;
+    //            for (var j = choosedIndex; j > 0; j--) {
+    //                tempLength += tabs[j].offsetWidth;
+    //                if (tempLength > tabsMax) {
+    //                    leftIndex = j + 1;
+    //                    flag = 1;
+    //                    break;
+    //                } else {
+    //                    leftIndex = j;
+    //                }
+    //            }
+    //            flag = 1;
+    //            break;
+    //        } else {
+    //            rightIndex = i - 1;
+    //            tempLength = 0;
+    //            for (var j = rightIndex; j > 0; j--) {
+    //                tempLength += tabs[j].offsetWidth;
+    //                if (tempLength > tabsMax) {
+    //                    leftIndex = j + 1;
+    //                    flag = 1;
+    //                    break;
+    //                } else {
+    //                    leftIndex = j;
+    //                }
+    //            }
+    //        }
+    //    } else {
+    //        rightIndex = choosedIndex;
+    //    }
+    //}
+    //tabs[leftIndex].className += " left";
+    //tabs[rightIndex].className += " right";
+    //adjustLeftAndRight(leftIndex, rightIndex, tabs);
 }
 
 function adjustLeftAndRight(left, right, tabs) {

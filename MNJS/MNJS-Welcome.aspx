@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="DJCRY-Welcome.aspx.cs" Inherits="DJCRY_DJCRY_Welcome" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="MNJS-Welcome.aspx.cs" Inherits="MNJS_MNJS_Welcome" %>
 
 <!DOCTYPE html>
 
@@ -28,7 +28,7 @@
 
 </head>
 <body>
-    <input id="type" type="hidden" value="DJCRY" />
+    <input id="type" type="hidden" value="MNJS" />
     <div style="min-height:556px;">
         <h1 class="page-header title">欢迎使用本系统</h1>
     </div>
