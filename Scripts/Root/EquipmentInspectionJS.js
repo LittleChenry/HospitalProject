@@ -687,8 +687,10 @@ function postData(str) {
 function checkContent(evt) {
     removeClass("invalid",this);
     var value = this.value;
+    if (value == "NA" || value == "功能是否正常")
+        return;
     var rep = /(\d{1,3}(\.\d{1,3})?\s*([a-z]{1,5}|%{1}|°{1})) ?(\d{1,3}(\.\d{1,3})?\s*([a-z]{1,5}|%{1}|°{1}))? ?(\d{1,3}(\.\d{1,3})?\s*([a-z]{1,5}|%{1}|°{1}))? *$/g;
-    if(!rep.test(value)){
+    if (!rep.test(value)) {
         this.className += " invalid";
         return false;
     }

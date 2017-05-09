@@ -219,9 +219,17 @@ public class DataLayer
         {
             _sqlCommand.Connection = _sqlConnect;
         }
-        int intResult = _sqlCommand.ExecuteNonQuery();
-        this.Close();
-        return intResult;
+        try
+        {
+            int intResult = _sqlCommand.ExecuteNonQuery();
+            this.Close();
+            return intResult;
+        }
+        catch (Exception e)
+        {
+            string s = e.Message;
+        }
+        return 1;
     }
     #endregion
 
