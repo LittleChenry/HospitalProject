@@ -26,11 +26,31 @@
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="../CSS/Welcome.css" rel="stylesheet" type="text/css" />
 
+    <script src="../Scripts/DJCRY/DJCRYwelcome.js" type="text/javascript"></script>
 </head>
 <body>
     <input id="type" type="hidden" value="DJCRY" />
     <div style="min-height:556px;">
         <h1 class="page-header title">欢迎使用本系统</h1>
+        <div class="panel panel-default notice">
+            <div class="welcome-title panel-heading">
+                <span class="welcome-span panel-title">通知栏</span>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <ul id="information" class="list-unstyled" ></ul>
+                </div>
+                <div class="row">
+                    <div style="text-align:center;">
+                        <button class="btn btn-primary firstpage" id="firstPage">首页</button>
+                        <button class="btn btn-primary firstpage" id="previousPage">上一页</button>
+                        <button class="btn btn-primary firstpage" id="nextPage">下一页</button>
+                        <button class="btn btn-primary firstpage" id="lastPage">尾页</button>
+                        <input type="hidden" id="currentPage" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
