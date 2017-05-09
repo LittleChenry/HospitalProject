@@ -26,6 +26,7 @@ function createPatient(evt) {
     lastPageNumber = Math.ceil(patientGroup.length / 10);
     if (lastPageNumber == 1) {
         for (var i = 0; i < patientGroup.length; i++) {
+            
             createPatientShow(patientGroup[i]);
         }
         document.getElementById("nextPage").disabled = "true";
@@ -376,7 +377,7 @@ function showfooter(patient, page) {
     div2.style.display = "block";
     var time = new Date();
     document.getElementById("treatID").value = patient.treatID;
-    document.getElementById("time").value = time.getFullYear() + "-" + (time.getMonth()+1) + "-" + time.getDay();
+    document.getElementById("time").value = time.getFullYear() + "-" + (time.getMonth()+1) + "-" + time.getDate();
     document.getElementById("diaguser").value = userName;
     document.getElementById("diaguserid").value = userID;
     var select1=document.getElementById("subcenter");
@@ -549,7 +550,7 @@ function createPatientShow(patient) {
         button.className = "btn btn-primary btn-xs";
         button.style.color = "white";
         button.addEventListener("click", function () { askForDiagnose(patient) }, false);
-        var textnode4 = document.createTextNode("进行体位固定申请");
+        var textnode4 = document.createTextNode("进行诊断");
         button.appendChild(textnode4);
         tdnode4.appendChild(button);
         trnode1.appendChild(tdnode1);

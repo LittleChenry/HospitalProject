@@ -1,10 +1,10 @@
 ﻿/* ***********************************************************
  * FileName: YSWelcomeJS.js
  * Writer: xubixiao
- * create Date: 2017-4-27
- * ReWriter:xubixiao
- * Rewrite Date:2017-4-27
- * impact :医生操作内置欢迎页面JS
+ * create Date: 2017-5-7
+ * ReWriter:
+ * Rewrite Date:
+ * impact :登记处操作内置欢迎页面JS
  * **********************************************************/
 
 
@@ -130,7 +130,7 @@ function createTitle(notice) {
     spanbadage.appendChild(textNodeNew);
 
 
-  
+
 
 
     var textNode = document.createTextNode(title);
@@ -160,7 +160,7 @@ function createTitle(notice) {
     if (time == Now) {
         li.appendChild(spanbadage);
     }
-   
+
 
 
 
