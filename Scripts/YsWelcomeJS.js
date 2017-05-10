@@ -123,15 +123,15 @@ function createTitle(notice) {
     var time = notice.Time;
     var ID = notice.ID;
 
-
     var spanbadage = document.createElement("SPAN");
     var textNodeNew = document.createTextNode("NEW");
     spanbadage.className = "label label-danger";
     spanbadage.appendChild(textNodeNew);
 
-
-  
-
+    var spantop = document.createElement("SPAN");
+    var textNodeTop = document.createTextNode("TOP");
+    spantop.className = "label label-warning";
+    spantop.appendChild(textNodeTop);
 
     var textNode = document.createTextNode(title);
 
@@ -160,7 +160,9 @@ function createTitle(notice) {
     if (time == Now) {
         li.appendChild(spanbadage);
     }
-   
+    if (notice.Important == 1) {
+        li.appendChild(spantop);
+    }
 
 
 
