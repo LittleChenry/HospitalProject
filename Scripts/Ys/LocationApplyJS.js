@@ -43,9 +43,8 @@ function Init(evt) {
     var button = document.getElementById("search");
     button.addEventListener('click', sendsearch, false);
     //xubixiao
-   
-}
 
+}
 //根据今天日期创建预约表
 //xuixiao加传参数,patient是病人信息,patient.Name/patient.ID...;patient.treatid是该次治疗的疗程ID
 //basefixinfo是上一页基础申请信息数组，basefixinfo[0]位置是模具选择的编号，basefixinfo[1]位置是特殊要求编号,basefixinfo[2]是申请人ID，basefixinfo[3]是时间
@@ -53,7 +52,7 @@ function CreateAppiontTable(patient, basefixinfo) {
     var equimentSelect = document.getElementById("equipmentName");
     var item = window.location.search.split("=")[1];//?后第一个变量信息
     var date = new Date();
-    var dateString = (1900+date.getYear()) + "-" + (1 + date.getMonth()) + "-" + date.getDate();
+    var dateString = (1900 + date.getYear()) + "-" + (1 + date.getMonth()) + "-" + date.getDate();
     GetItemInformation(item, dateString);//获取该项目所有设备
     if (obj.Equiment1[0].Equipment == "false")
         return;
@@ -64,13 +63,13 @@ function CreateAppiontTable(patient, basefixinfo) {
         equimentSelect.options[count].value = equiment[0].EuqipmentID;
         ++count;
     }
-    CreateCurrentEquipmentTbale(obj.Equiment1, dateString, patient,basefixinfo);//创建第一个设备的表
+    CreateCurrentEquipmentTbale(obj.Equiment1, dateString, patient, basefixinfo);//创建第一个设备的表
 }
 
 //创建某设备某天的预约表
 //xuixiao加传参数,patient是病人信息,patient.Name/patient.ID...;patient.treatid是该次治疗的疗程ID
 //basefixinfo是上一页基础申请信息数组，basefixinfo[0]位置是模具选择的编号，basefixinfo[1]位置是特殊要求编号,basefixinfo[2]是申请人ID，basefixinfo[3]是时间
-function CreateCurrentEquipmentTbale(equiment, dateString, patient,basefixinfo) {
+function CreateCurrentEquipmentTbale(equiment, dateString, patient, basefixinfo) {
     var table = document.getElementById("apptiontTable");
     RemoveAllChild(table);
     var thead = document.createElement("THEAD");
@@ -92,7 +91,8 @@ function CreateCurrentEquipmentTbale(equiment, dateString, patient,basefixinfo) 
         var end = equiment[i].End;
         var state = equiment[i].State;
         var id = equiment[i].ID;
-       
+       var datedate=dateString.split("-");
+
 
         var timeText = document.createTextNode(toTime(beg) + " - " + toTime(end));
         var th = document.createElement("TH");
@@ -106,15 +106,16 @@ function CreateCurrentEquipmentTbale(equiment, dateString, patient,basefixinfo) 
         if (state == "0") {
             var button = document.createElement("INPUT");
             button.value = "预约";
-            button.id = id;
+
+            button.id = id + "-" + datedate[1] + "-" + datedate[2] + "-" + beg + "-" + end;
             button.type = "submit";
             button.addEventListener("click", function () {
                 postfix(this, patient, basefixinfo);
-               
+
             }, false);
             td2.appendChild(button);
         }
-        
+
 
         if (cols < 9) {
             headRow.appendChild(th);
@@ -144,20 +145,59 @@ function CreateCurrentEquipmentTbale(equiment, dateString, patient,basefixinfo) 
 }
 function postfix(evt, patient, basefixinfo) {
     if (window.confirm('你确定此次申请无误了么？')) {
-        var xmlHttp = new XMLHttpRequest();
+        var idstring = evt.id;
+        var idgroup=idstring.split("-");
+        var bool = compare(basefixinfo[9], idgroup);
+        if (bool) {
+            var xmlHttp = new XMLHttpRequest();
 
-        var url = "fixedApplyRecord.ashx?id=" + evt.id + "&pid=" + patient.ID + "&treatid=" + patient.treatID + "&model=" + basefixinfo[0] + "&fixreq=" + basefixinfo[1] + "&user=" + basefixinfo[2] + "&fixequip=" + basefixinfo[5] + "&bodypost=" + basefixinfo[4];
-        xmlHttp.open("GET", url, false);
-        xmlHttp.send();
-        var result = xmlHttp.responseText;
-        if (result == "success") {
-            window.alert("申请成功");
-            askForBack();
+            var url = "LocationApplyRecord.ashx?id=" + idgroup[0] + "&pid=" + patient.ID + "&treatid=" + patient.treatID + "&scanpart=" + basefixinfo[0] + "&scanmethod=" + basefixinfo[1] + "&user=" + basefixinfo[2] + "&add=" + basefixinfo[4] + "&addmethod=" + basefixinfo[5] + "&up=" + basefixinfo[6] + "&down=" + basefixinfo[7] + "&remark=" + basefixinfo[8] + "&requirement=" + basefixinfo[10];
+ 
+            xmlHttp.open("GET", url, false);
+            xmlHttp.send();
+            var result = xmlHttp.responseText;
+            if (result == "success") {
+                window.alert("申请成功");
+                askForBack();
+            }
+            else {
+                window.alert("申请失败");
+            }
         }
         else {
-            window.alert("申请失败");
+            window.alert("请注意此病人的体位固定时间(两小时之差)再进行预约");
         }
+
     }
+
+}
+//比较体位固定与模拟定位申请时间
+function compare(evt1, evt2) {
+    var year = evt1.split(" ")[0];
+    var hour = evt1.split(" ")[1];
+    var begin = hour.split("-")[0];
+    var minute = begin.split(":")[0];
+    var minute2 = begin.split(":")[1];
+    Min = parseInt(minute) * 60 + parseInt(minute2);
+    var month = year.split("/")[1];
+    var day = year.split("/")[2];
+    if (parseInt(month) > parseInt(evt2[1])) {
+        
+        return false;
+    }
+    if (parseInt(month) == parseInt(evt2[1]) && parseInt(day) > parseInt(evt2[2])) {
+        return false;
+    }
+    if (parseInt(month) == parseInt(evt2[1]) && parseInt(day) == parseInt(evt2[2])) {
+        if ((parseInt(evt2[3]) - Min) >= 120) {
+            return true;
+        }
+        else {
+            return false;
+        }
+       
+    }
+    return true;
 
 }
 function toTime(minute) {
@@ -170,7 +210,7 @@ function toTime(minute) {
 function RemoveAllChild(area) {
     while (area.hasChildNodes()) {
         var first = area.firstChild;
-        if(first != null && first != undefined)
+        if (first != null && first != undefined)
             area.removeChild(first);
     }
 }
@@ -211,7 +251,7 @@ function CreateNewAppiontTable(evt, patient, basefixinfo) {
 //获取所有待等待体位固定申请疗程号以及所属患者ID与其他信息
 function getPatientInfo(evt) {
     var xmlHttp = new XMLHttpRequest();
-    var url = "patientInfoForFix.ashx?name=all";
+    var url = "patientInfoForLocation.ashx?name=all";
     xmlHttp.open("GET", url, false);
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.status == 200 && xmlHttp.readyState == 4) {
@@ -304,10 +344,10 @@ function sendsearch(evt) {
     var str = inputvalue.value;
     var xmlHttp = new XMLHttpRequest();
     if (str == "") {
-        var url = "patientInfoForFix.ashx?name=all";
+        var url = "patientInfoForLocation.ashx?name=all";
     }
     else {
-        var url = "patientInfoForFix.ashx?name=" + str;
+        var url = "patientInfoForLocation.ashx?name=" + str;
     }
     xmlHttp.open("GET", url, false);
     xmlHttp.onreadystatechange = function () {
@@ -379,7 +419,7 @@ function createPatientShow(patient) {
         button.className = "btn btn-primary btn-xs";
         button.style.color = "white";
         button.addEventListener("click", function () { askForFix(patient) }, false);
-        var textnode4 = document.createTextNode("进行体位固定申请");
+        var textnode4 = document.createTextNode("进行模拟定位申请");
         button.appendChild(textnode4);
         tdnode4.appendChild(button);
         trnode1.appendChild(tdnode1);
@@ -392,7 +432,7 @@ function createPatientShow(patient) {
     }
 
 }
-//请求固定申请
+//请求模拟定位
 function askForFix(patient) {
     var panel = document.getElementById("mainpanelbody");
     var paneltemp = document.getElementById("otherpanelbody");
@@ -442,20 +482,30 @@ function askForBack() {
 function nextstep(patient) {
     var curinput = document.getElementById("curstep");
     if (curinput.value == 2) {
-        if (document.getElementById("modelselect").value == "allItem") {
-            window.alert("请选择模具");
+        if (document.getElementById("scanpart").value == "allItem") {
+            window.alert("请选择扫描部位");
             return;
         }
-        if (document.getElementById("specialrequest").value == "allItem") {
+        if (document.getElementById("scanmethod").value == "allItem") {
+            window.alert("请选择扫描方式");
+            return;
+        }
+        if (document.getElementById("up").value == "") {
+            window.alert("请填写上界");
+            return;
+        }
+        if (document.getElementById("down").value == "") {
+            window.alert("请填写下界");
+            return;
+        }
+        if (document.getElementsByName("add").value == "Y") {
+            if (document.getElementById("addmethod").value == "allItem") {
+                window.alert("请选择增强方式");
+            }
+            return;
+        }
+        if (document.getElementById("special").value == "allItem") {
             window.alert("请选择特殊要求");
-            return;
-        }
-        if (document.getElementById("fixEquip").value == "allItem") {
-            window.alert("请选择固定装置");
-            return;
-        }
-        if (document.getElementById("bodyPost").value == "allItem") {
-            window.alert("请选择或输入体位");
             return;
         }
 
@@ -616,14 +666,27 @@ function showApply(patient, page) {
         document.getElementById("treatID").value = patient.treatID;
         document.getElementById("time").value = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate();
         document.getElementById("applyuser").value = userName;
-        var select1 = document.getElementById("modelselect");
-        createmodelselectItem(select1);
-        var select2 = document.getElementById("specialrequest");
-        createspecialrequestItem(select2);
-        var select3 = document.getElementById("fixEquip");
-        createfixEquipItem(select3);
+        var fixtime = getfixtime(patient);
+        var fixtime = JSON.parse(fixtime).fixtime;
+        var begintime=toTime(fixtime[0].Begin);
+        var endtime = toTime(fixtime[0].End);
        
-     
+        document.getElementById("fixtime").value = fixtime[0].Date.split(" ")[0] + " "+begintime + "-" + endtime;
+        var select1 = document.getElementById("scanpart");
+        createscanpartItem(select1);
+        var select2 = document.getElementById("scanmethod");
+        createscanmethodItem(select2);
+        var select3 = document.getElementById("special");
+        createspecialItem(select3);
+        var add= document.getElementsByName("add");
+        if (add[0].checked) {
+            var select4 = document.getElementById("addmethod");
+            createaddmethodItem(select4);
+        } else {
+            document.getElementById("addmethod").disabled = "true";
+
+        }
+
     }
     if (page == 3) {
         buttonpre.removeAttribute("disabled");
@@ -635,43 +698,83 @@ function showApply(patient, page) {
         div.style.display = "none";
         div2.style.display = "block";
         var basefixinfo = [];
-        basefixinfo[0]= document.getElementById("modelselect").value;
-        basefixinfo[1] = document.getElementById("specialrequest").value;
+        basefixinfo[0] = document.getElementById("scanpart").value;
+        basefixinfo[1] = document.getElementById("scanmethod").value;
         basefixinfo[2] = userID;
         basefixinfo[3] = document.getElementById("time").value;
-        basefixinfo[4] = document.getElementById("bodyPost").value;
-        basefixinfo[5] = document.getElementById("fixEquip").value;
+        var add = document.getElementsByName("add");
+        if (add[0].checked) {
+            basefixinfo[4] = 1;
+        }
+        else {
+            basefixinfo[4] = 0;
+        }
+        basefixinfo[5] = document.getElementById("addmethod").value;
+        basefixinfo[6] = document.getElementById("up").value;
+        basefixinfo[7] = document.getElementById("down").value;
+        basefixinfo[8] = document.getElementById("remark").value;
+        basefixinfo[9] = document.getElementById("fixtime").value;
+        basefixinfo[10] = document.getElementById("special").value;
         CreateAppiontTable(patient, basefixinfo);
         document.getElementById("chooseProject").addEventListener("click", function () {
             CreateNewAppiontTable(event, patient, basefixinfo);
         }, false);//根据条件创建预约表
     }
 }
-//第二页的模具选择下拉菜单
-function createmodelselectItem(thiselement)
-{
-    var modelItem = JSON.parse(getmodelItem()).Item;
-    thiselement.options.length = 0;
-    thiselement.options[0] = new Option("--模具选择--");
-    thiselement.options[0].value = "allItem";
-    for (var i = 0; i < modelItem.length; i++) {
-        if (modelItem[i] != "") {
-            thiselement.options[i + 1] = new Option(modelItem[i].Name);
-            thiselement.options[i + 1].value = parseInt(modelItem[i].ID);
-        }
-    }
+function getfixtime(patient) {
+    var treatid = patient.treatID;
+    var xmlHttp = new XMLHttpRequest();
+    var url = "GetFixtime.ashx?treatid=" + treatid;
+    xmlHttp.open("GET", url, false);
+    xmlHttp.send(null);
+    var json = xmlHttp.responseText;
+    return json;
 
 }
-function getmodelItem() {
+//扫描部位
+function createscanpartItem(thiselement) {
+    var scanpartItem = JSON.parse(getscanpartItem()).Item;
+    thiselement.options.length = 0;
+    thiselement.options[0] = new Option("--扫描部位--");
+    thiselement.options[0].value = "allItem";
+    for (var i = 0; i < scanpartItem.length; i++) {
+        if (scanpartItem[i] != "") {
+            thiselement.options[i + 1] = new Option(scanpartItem[i].Name);
+            thiselement.options[i + 1].value = parseInt(scanpartItem[i].ID);
+        }
+    }
+}
+function getscanpartItem() {
     var xmlHttp = new XMLHttpRequest();
-    var url = "getmodel.ashx";
+    var url = "getscanpart.ashx";
     xmlHttp.open("GET", url, false);
     xmlHttp.send();
     var Items = xmlHttp.responseText;
     return Items;
 }
-//第二页的特殊要求下拉菜单
-function createspecialrequestItem(thiselement) {
+//扫描部位
+function createscanmethodItem(thiselement) {
+    var scanmethodItem = JSON.parse(getscanmethodItem()).Item;
+    thiselement.options.length = 0;
+    thiselement.options[0] = new Option("--扫描方式--");
+    thiselement.options[0].value = "allItem";
+    for (var i = 0; i < scanmethodItem.length; i++) {
+        if (scanmethodItem[i] != "") {
+            thiselement.options[i + 1] = new Option(scanmethodItem[i].Method);
+            thiselement.options[i + 1].value = parseInt(scanmethodItem[i].ID);
+        }
+        }
+    }
+function getscanmethodItem() {
+    var xmlHttp = new XMLHttpRequest();
+    var url = "getscanmethod.ashx";
+    xmlHttp.open("GET", url, false);
+    xmlHttp.send();
+    var Items = xmlHttp.responseText;
+    return Items;
+}
+//扫描特殊要求
+function createspecialItem(thiselement) {
     var specialItem = JSON.parse(getspecialItem()).Item;
     thiselement.options.length = 0;
     thiselement.options[0] = new Option("--特殊要求--");
@@ -682,38 +785,78 @@ function createspecialrequestItem(thiselement) {
             thiselement.options[i + 1].value = parseInt(specialItem[i].ID);
         }
     }
-
 }
 function getspecialItem() {
     var xmlHttp = new XMLHttpRequest();
-    var url = "getspecial.ashx";
+    var url = "getscanspecial.ashx";
     xmlHttp.open("GET", url, false);
     xmlHttp.send();
     var Items = xmlHttp.responseText;
     return Items;
 }
-//第二页获取固定装置下拉菜单
-function createfixEquipItem(thiselement) {
-    var fixequipItem = JSON.parse(getfixequipItem()).Item;
+//增强方式
+function createaddmethodItem(thiselement) {
+    var addmethodItem = JSON.parse(getaddmethodItem()).Item;
     thiselement.options.length = 0;
-    thiselement.options[0] = new Option("--固定装置--");
+    thiselement.options[0] = new Option("--增强方式--");
     thiselement.options[0].value = "allItem";
-    for (var i = 0; i < fixequipItem.length; i++) {
-        if (fixequipItem[i] != "") {
-            thiselement.options[i + 1] = new Option(fixequipItem[i].Name);
-            thiselement.options[i + 1].value = parseInt(fixequipItem[i].ID);
+    for (var i = 0; i < addmethodItem.length; i++) {
+        if (addmethodItem[i] != "") {
+            thiselement.options[i + 1] = new Option(addmethodItem[i].Method);
+            thiselement.options[i + 1].value = parseInt(addmethodItem[i].ID);
         }
     }
-
 }
-function getfixequipItem() {
+function getaddmethodItem() {
     var xmlHttp = new XMLHttpRequest();
-    var url = "getfixequip.ashx";
+    var url = "getaddmethod.ashx";
     xmlHttp.open("GET", url, false);
     xmlHttp.send();
     var Items = xmlHttp.responseText;
     return Items;
 }
+function forchange() {
+    var add = document.getElementsByName("add");
+    if (add[0].checked) {
+        var select4 = document.getElementById("addmethod");
+        select4.removeAttribute("disabled");
+        createaddmethodItem(select4);
+    }
+    if (add[1].checked)
+    {
+        document.getElementById("addmethod").disabled = "true";
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //下面是jquery流程条实现代码
@@ -803,17 +946,30 @@ $(function () {
             }
             //此处用于在第二页未成功输入模具与特殊要求阻止流动条流动
             if (page == 3) {
-                if (document.getElementById("modelselect").value == "allItem") {
-                    return false;
+                if (document.getElementById("scanpart").value == "allItem") {
+                    return;
                 }
-                if (document.getElementById("specialrequest").value == "allItem") {
-                    return  false;
+                if (document.getElementById("scanmethod").value == "allItem") {
+                   
+                    return;
                 }
-                if (document.getElementById("bodyPost").value == "allItem") {
-                    return false;
+                if (document.getElementById("up").value == "") {
+                   
+                    return;
                 }
-                if (document.getElementById("fixEquip").value == "allItem") {
-                    return false;
+                if (document.getElementById("down").value == "") {
+                    
+                    return;
+                }
+                if (document.getElementsByName("add").value == "Y") {
+                    if (document.getElementById("addmethod").value == "allItem") {
+                       return;
+                    }
+                   
+                }
+                if (document.getElementById("special").value == "allItem") {
+                    
+                    return;
                 }
             }
             curPage = page;

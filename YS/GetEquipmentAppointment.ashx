@@ -66,7 +66,7 @@ public class GetEquipmentAppointment : IHttpHandler {
         while (reader.Read())
         {
             backString.Append("{\"Begin\":\"" + reader["Begin"].ToString() + "\",\"End\":\""
-                    + reader["End"].ToString() + "\",\"State\":\"" + reader["State"].ToString()
+                    + reader["End"].ToString() + "\",\"ID\":\"" + reader["ID"].ToString() + "\",\"State\":\"" + reader["State"].ToString()
                     + "\"}");
             if (currentTimes < times)
             {

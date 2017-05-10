@@ -1,18 +1,18 @@
-﻿<%@ WebHandler Language="C#" Class="patientInfoForFix" %>
-
+﻿<%@ WebHandler Language="C#" Class="patientInfoForLocation" %>
 using System;
 using System.Web;
 using System.Text;
 /* ***********************************************************
- * FileName:patientInfoForFix.ashx
+ * FileName:patientInfoForLocation.ashx
  * Writer: xubxiao
- * create Date: 2017-5-4
+ * create Date: 2017-5-9
  * ReWriter:
  * Rewrite Date:
  * impact :
- * 等待体位固定申请的疗程号以及患者基本信息获取
+ * 等待模拟定位申请的疗程号以及患者基本信息获取
  * **********************************************************/
-public class patientInfoForFix : IHttpHandler {
+
+public class patientInfoForLocation : IHttpHandler {
     private DataLayer sqlOperation = new DataLayer("sqlStr");
     public void ProcessRequest(HttpContext context)
     {
@@ -41,10 +41,10 @@ public class patientInfoForFix : IHttpHandler {
         if (name == "all")
         {
             int i = 1;
-            string countCompute = "select count(treatment.ID) from treatment,patient where patient.ID=treatment.Patient_ID and treatment.DiagnosisRecord_ID is not NULL and treatment.Fixed_ID is NULL";
+            string countCompute = "select count(treatment.ID) from treatment,patient where patient.ID=treatment.Patient_ID and treatment.Fixed_ID is not NULL and treatment.Location_ID is NULL";
             int count = int.Parse(sqlOperation.ExecuteScalar(countCompute));
 
-            string sqlCommand = "select treatment.ID as treatid,patient.* from treatment,patient where patient.ID=treatment.Patient_ID and treatment.DiagnosisRecord_ID is not NULL and treatment.Fixed_ID is NULL";
+            string sqlCommand = "select treatment.ID as treatid,patient.* from treatment,patient where patient.ID=treatment.Patient_ID and treatment.Fixed_ID is not NULL and treatment.Location_ID is NULL";
             MySql.Data.MySqlClient.MySqlDataReader reader = sqlOperation.ExecuteReader(sqlCommand);
             StringBuilder backText = new StringBuilder("{\"patientGroup\":[");
             while (reader.Read())
@@ -67,10 +67,10 @@ public class patientInfoForFix : IHttpHandler {
         {
 
             int i = 1;
-            string countCompute = "select count(treatment.ID) from treatment,patient where patient.ID=treatment.Patient_ID and treatment.DiagnosisRecord_ID is not NULL and treatment.Fixed_ID is NULL and patient.Name LIKE @name";
+            string countCompute = "select count(treatment.ID) from treatment,patient where patient.ID=treatment.Patient_ID and treatment.Fixed_ID is not NULL and treatment.Location_ID is NULL and patient.Name LIKE @name";
             sqlOperation.AddParameterWithValue("@name", "%" + name + "%");
             int count = int.Parse(sqlOperation.ExecuteScalar(countCompute));
-            string sqlCommand = "select treatment.ID as treatid,patient.* from treatment,patient where patient.ID=treatment.Patient_ID and treatment.DiagnosisRecord_ID is not NULL and treatment.Fixed_ID is NULL and patient.Name LIKE @name";
+            string sqlCommand = "select treatment.ID as treatid,patient.* from treatment,patient where patient.ID=treatment.Patient_ID and treatment.Fixed_ID is not NULL and treatment.Location_ID is NULL and patient.Name LIKE @name";
             sqlOperation.AddParameterWithValue("@name", "%" + name + "%");
             MySql.Data.MySqlClient.MySqlDataReader reader = sqlOperation.ExecuteReader(sqlCommand);
             StringBuilder backText = new StringBuilder("{\"patientGroup\":[");

@@ -92,7 +92,7 @@ public class GetApptiontment : IHttpHandler {
             while (reader.Read())
             {
                 backString.Append("{\"Begin\":\"" + reader["Begin"].ToString() + "\",\"End\":\""
-                    + reader["End"].ToString() + "\",\"EuqipmentID\":\"" + s + "\",\"State\":\"" + reader["State"].ToString()
+                    + reader["End"].ToString() + "\",\"EuqipmentID\":\"" + s + "\",\"ID\":\"" + reader["ID"].ToString() + "\",\"State\":\"" + reader["State"].ToString()
                  + "\",\"Euqipment\":\"");
                 sqlCommand = "SELECT Name FROM equipment WHERE ID=@id";
                 sqlInreader.AddParameterWithValue("@id", int.Parse(s));
