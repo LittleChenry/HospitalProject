@@ -54,7 +54,8 @@ private bool RecordPatientInformation()
         string userID = Request.Form["userID"];
         int userid = Convert.ToInt32(userID);
         DateTime datetime = DateTime.Now;
-        string strSqlCommand = "UPDATE  fixed  SET BodyPositionDetail=@detail,AnnexDescription=@description,Remarks=@remarks,OperateTime=@datetime,Operate_User_ID=@userid where fixed.ID=@fixedID";
+        bool state=false;
+        string strSqlCommand = "UPDATE  fixed  SET Pictures=@picture,BodyPositionDetail=@detail,AnnexDescription=@description,Remarks=@remarks,OperateTime=@datetime,Operate_User_ID=@userid where fixed.ID=@fixedID";
         //各参数赋予实际值
         sqlOperation.AddParameterWithValue("@fixedID", FixedID);
         sqlOperation.AddParameterWithValue("@detail", Request.Form["BodyPositionDetail"]);
@@ -62,10 +63,15 @@ private bool RecordPatientInformation()
         sqlOperation.AddParameterWithValue("@remarks", Request.Form["Remarks"]);
         sqlOperation.AddParameterWithValue("@datetime", datetime);
         sqlOperation.AddParameterWithValue("@userid", userid);
+        sqlOperation.AddParameterWithValue("@picture", savepath1);
+        string strSqlCommand1 = "UPDATE  appointment  SET State=@state where Treatment_ID=@treatid";
+        sqlOperation.AddParameterWithValue("@state", state);
+        sqlOperation.AddParameterWithValue("@treatid", treatID);
         int intSuccess = sqlOperation.ExecuteNonQuery(strSqlCommand);
-        
+       
         if (intSuccess > 0)
-        {
+        { 
+            sqlOperation.ExecuteNonQuery(strSqlCommand1);
             return true;
         }
         else
