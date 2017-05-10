@@ -80,6 +80,9 @@
 
                     <div class="panel-body" id="singlepatientpanelbody" style="display:none;text-align:center">
                         <form id="saveFixRecord" method="post" runat="server">
+                            <input type="hidden" name="ispostback" value="true" />
+                           <input type="hidden"  id="hidetreatID" name="hidetreatID" />
+                            <input type="hidden"  id="userID" name="userID" />
                             <table class="table table-bordered table-hover" style="width:80%;margin:auto;">
                                 <tbody>
                                     <tr class="warning">
@@ -132,19 +135,19 @@
                                     <tr>
                                         <td>体位详细描述</td>
                                         <td colspan="5">
-                                            <textarea id="BodyPositionDetail" class="form-control" rows="3"></textarea>
+                                            <textarea id="BodyPositionDetail" class="form-control" name="BodyPositionDetail" rows="3"></textarea>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>附件描述</td>
                                         <td colspan="5">
-                                            <textarea id="AnnexDescription" class="form-control" rows="3"></textarea>
+                                            <textarea id="AnnexDescription" class="form-control" name="AnnexDescription" rows="3"></textarea>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>备注</td>
                                         <td colspan="5">
-                                            <textarea id="Remarks" class="form-control" rows="2"></textarea>
+                                            <textarea id="Remarks" name="Remarks" class="form-control" rows="2"></textarea>
                                         </td>
                                     </tr>
                                     <tr>
@@ -156,8 +159,8 @@
                                 </tbody>
                             </table>
                             <div class="row" style="margin-top:30px;margin-bottom:30px;">
-                                <button id="cancel" class="btn btn-default" style="margin-right:40px;">返回</button>
-                                <button id="save" class="btn btn-success">保存</button>
+                                <input id="cancel" class="btn btn-default" type="button" value="取消" style="margin-right:40px;" />
+                                <input id="save" class="btn btn-success" type="submit" value="保存" />
                             </div>
                         </form>
                     </div>

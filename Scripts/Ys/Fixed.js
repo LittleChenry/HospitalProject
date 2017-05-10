@@ -34,6 +34,8 @@ function Init(evt) {
     getUserName();
     getUserID();
     //此处为分页代码
+    //alert(userID);
+    //document.getElementById("username").value = userID; 
     document.getElementById("currentPage").value = 1;
     document.getElementById("previousPage").disabled = "true";
     document.getElementById("firstPage").addEventListener('click', firstPageShow, false);
@@ -211,9 +213,12 @@ function getUserID() {
         if (xmlHttp.readyState == 4) {//正常响应
             if (xmlHttp.status == 200) {//正确接受响应数据
                 userID = xmlHttp.responseText;
+                //alert(userID);                
             }
+
         }
     }
+    
     xmlHttp.send();
 }
 
@@ -292,6 +297,8 @@ function askForFix(FixedID) {
 }
 
 function writeFixInfo(FixPatientChosen) {
+    
+    document.getElementById("hidetreatID").value = FixPatientChosen.fixedInfo[0].treatID;
     document.getElementById("Name").innerHTML = FixPatientChosen.fixedInfo[0].Name;
     document.getElementById("Gender").innerHTML = sex(FixPatientChosen.fixedInfo[0].Gender);
     document.getElementById("Age").innerHTML = FixPatientChosen.fixedInfo[0].Age;
@@ -312,6 +319,7 @@ function writeFixInfo(FixPatientChosen) {
     document.getElementById("fixedEquipment").innerHTML = FixPatientChosen.fixedInfo[0].fixedEquipment;
     document.getElementById("ApplicationUser").innerHTML = FixPatientChosen.fixedInfo[0].ApplicationUser;
     document.getElementById("ApplicationTime").innerHTML = FixPatientChosen.fixedInfo[0].ApplicationTime;
+    document.getElementById("userID").value = userID;
 }
 
 function sex(evt) {
