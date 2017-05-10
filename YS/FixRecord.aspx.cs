@@ -17,7 +17,7 @@ public partial class YS_FixRecord : System.Web.UI.Page
          {                     
              if (RecordPatientInformation())
              {
-                 MessageBox.Message("保存成功");
+                 MessageBox.Message("保存成功!");
 
              }
 
